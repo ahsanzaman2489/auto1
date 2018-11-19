@@ -1,0 +1,19 @@
+{
+  "name": "auto1",
+  "version": "1.0.0",
+  "description": "Javascript test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahsanzaman2489/auto1.git"
+  },
+  "author": "Ahsan Zaman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahsanzaman2489/auto1/issues"
+  },
+  "homepage": "https://github.com/ahsanzaman2489/auto1#readme"
+}
