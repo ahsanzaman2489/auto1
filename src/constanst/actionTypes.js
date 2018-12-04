@@ -1,1 +1,3 @@
 export const CARS_LIST = 'CARS_LIST';
+export const COLORS_LIST = 'COLORS_LIST';
+export const MANUFACTURERS_LIST = 'MANUFACTURERS_LIST';

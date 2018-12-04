@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {NavLink} from 'react-router-dom';
+import {withRouter,NavLink} from 'react-router-dom';
 import ExtraDataComponent from '../extraData';
-import selectBox from '../form/selectbox';
+import queryString from "query-string";
 
 
 const CarListComponent = props => {
+    console.log(this)
     const renderList = (cars) => {
         return cars.map((item, index) => {
             return (
@@ -20,19 +21,32 @@ const CarListComponent = props => {
             );
         })
     };
-    const {cars} = props;
+
+    const renderKeywords = (searchParams) => {
+        let searchKeywords = [];
+
+        for (let key in searchParams) {
+            searchKeywords.push(<p key={key}>{key + " : " + searchParams[key]}</p>);
+        }
+        return searchKeywords;
+    };
+
+    const {cars, totalPageCount, location} = props;
+    const currentParams = queryString.parse(location.search);
     return (
         <div>
-            <aside>form</aside>
-            <section>
-                {renderList(cars)}
-            </section>
+            <h2>Available cars</h2>
+            {renderKeywords(currentParams)}
+            <h3>Showing {cars.length} of {cars.length * totalPageCount} results</h3>
+            {renderList(cars)}
         </div>
     );
 };
 
 CarListComponent.propTypes = {
     cars: PropTypes.array.isRequired,
+    totalPageCount: PropTypes.number.isRequired,
+
 };
 
-export default CarListComponent;
+export default withRouter(CarListComponent);

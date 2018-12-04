@@ -1,10 +1,10 @@
 import {HOST, HOST_PORT} from '../constanst/app';
-import 'whatwg-fetch'
+import 'whatwg-fetch';
 
 
 class CarsService {
-    fetchList = (END_POINT) => {
-        return fetch(HOST + HOST_PORT + END_POINT, {method: 'get', mode: 'cors'}).then((response) => {
+    fetchList = (END_POINT, query = "") => {
+        return fetch(HOST + HOST_PORT + END_POINT + query, {method: 'get', mode: 'cors'}).then((response) => {
             return response.json();
         }).catch(error => {
             console.log('error ===>', error);

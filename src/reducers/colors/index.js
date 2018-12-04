@@ -1,9 +1,9 @@
-import {CARS_LIST} from 'src/constanst/actionTypes';
+import {COLORS_LIST} from 'src/constanst/actionTypes';
 
-const carState = (state = {}, action) => {
+const colorState = (state = {}, action) => {
 
     switch (action.type) {
-        case CARS_LIST:
+        case COLORS_LIST:
             state = {...action.payload};
             return state;
         default:
@@ -11,4 +11,4 @@ const carState = (state = {}, action) => {
     }
 };
 
-export default carState;
+export default colorState;
