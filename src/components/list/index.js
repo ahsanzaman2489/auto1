@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withRouter,NavLink} from 'react-router-dom';
+import {withRouter, NavLink} from 'react-router-dom';
 import ExtraDataComponent from '../extraData';
-import queryString from "query-string";
+import PagingComponent from '../paging';
+import queryString, {stringify} from "query-string";
 
 
 const CarListComponent = props => {
-    console.log(this)
     const renderList = (cars) => {
         return cars.map((item, index) => {
             return (
@@ -31,6 +31,13 @@ const CarListComponent = props => {
         return searchKeywords;
     };
 
+    const renderPaginationLink = (url, currentParams, page) => {
+        if (page === 0) page = 1;
+        currentParams.page = page;
+        const newQuery = stringify(currentParams, {encode: false});
+        return (url + "?" + newQuery);
+    };
+
     const {cars, totalPageCount, location} = props;
     const currentParams = queryString.parse(location.search);
     return (
@@ -39,6 +46,7 @@ const CarListComponent = props => {
             {renderKeywords(currentParams)}
             <h3>Showing {cars.length} of {cars.length * totalPageCount} results</h3>
             {renderList(cars)}
+            {<PagingComponent totalPageCount={totalPageCount} location={location}/>}
         </div>
     );
 };

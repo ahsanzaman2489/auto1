@@ -17,6 +17,14 @@ class CarListContainer extends Component {
         fetchCars(history.location.search);
     }
 
+    componentWillReceiveProps(nextProps) {
+        const {fetchCars, location} = nextProps;
+        if (this.props.location.search !== location.search) {
+            fetchCars(location.search)
+        }
+
+    }
+
     // mergreQuery = (query) => {
     //     const {location} = this.props;
     //     const currentParams = queryString.parse(location.search);
@@ -30,20 +38,20 @@ class CarListContainer extends Component {
     //     return stringify(currentParams, {encode: false});
     // };
     submitFilter = (values) => {
-        const {history, reset, fetchCars} = this.props;
-        var newQuery = stringify(values, {encode: false});
+        const {history} = this.props;
+        let newQuery = stringify(values, {encode: false});
+
+        if (Object.keys(values).length > 0) {
+            newQuery = "?" + newQuery;
+        }
+
         history.push({
             pathname: '/cars/list',
-            search: "?" + newQuery,
+            search: newQuery,
         });
-        fetchCars("?" + newQuery);
-        reset();
+
     };
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log(nextProps, nextState, nextContext);
-        return true;
-    }
 
     render() {
         const {handleSubmit, carlist, colorlist, manufacturerlist, location} = this.props;
@@ -71,16 +79,17 @@ const mapStatToProps = state => {
         carlist: state.Cars,
         colorlist: state.Colors,
         manufacturerlist: state.Manufacturers,
-
     };
 };
 
 function validate(values) {
     const errors = {};
-    if (!values.hasOwnProperty('color') && !values.hasOwnProperty('manufacturer')) {
-        errors.color = 'Please, Select value to filter';
-        errors.manufacturer = 'Please, Select value to filter';
-    }
+    // if (!values.color) {
+    //     errors.color = 'Please, Select value to filter';
+    // }
+    // if (!values.manufacturer) {
+    //     errors.manufacturer = 'Please, Select value to filter';
+    // }
     return errors;
 }
 

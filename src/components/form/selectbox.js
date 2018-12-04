@@ -21,7 +21,7 @@ export default field => {
             <div className="form-group col-md-6 col-md-offset-3">
                 <label htmlFor={field.id}>{field.label}</label>
                 <select {...field.input} id={field.id} className="form-control">
-                    <option value="">select</option>
+                    <option value="">{field.placeholder}</option>
                     {renderOptions(field.options)}
                 </select>
                 {!active && (error && submitFailed) && <span className="text-danger">{error}</span>}

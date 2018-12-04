@@ -3,7 +3,7 @@ import SelectBoxComponent from "./selectbox";
 import {Field} from 'redux-form';
 
 export default props => {
-    const {colors, manufacturers,handleSubmit} = props;
+    const {colors, manufacturers, handleSubmit} = props;
 
     return (
         <form onSubmit={handleSubmit} autoComplete="off">
@@ -11,6 +11,7 @@ export default props => {
                    id="color"
                    label="color"
                    component={SelectBoxComponent}
+                   placeholder={'All car colors'}
                    options={colors}
             />
 
@@ -19,6 +20,7 @@ export default props => {
                    label="manufacturer"
                    component={SelectBoxComponent}
                    options={manufacturers}
+                   placeholder={'All manufacturers'}
             />
 
             <div>
