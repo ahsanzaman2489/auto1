@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {withRouter, NavLink} from 'react-router-dom';
 import ExtraDataComponent from '../extraData';
 import PagingComponent from '../paging';
-import queryString, {stringify} from "query-string";
+import queryString from "query-string";
 
 
 const CarListComponent = props => {
@@ -29,13 +29,6 @@ const CarListComponent = props => {
             searchKeywords.push(<p key={key}>{key + " : " + searchParams[key]}</p>);
         }
         return searchKeywords;
-    };
-
-    const renderPaginationLink = (url, currentParams, page) => {
-        if (page === 0) page = 1;
-        currentParams.page = page;
-        const newQuery = stringify(currentParams, {encode: false});
-        return (url + "?" + newQuery);
     };
 
     const {cars, totalPageCount, location} = props;

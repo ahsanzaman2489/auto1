@@ -6,23 +6,29 @@ import * as Actions from '../actions';
 import CarListComponent from '../components/list';
 import FormComponent from '../components/form/';
 import {reduxForm} from 'redux-form';
-import {stringify} from "query-string";
+import queryString, {stringify} from "query-string";
+
 
 class CarListContainer extends Component {
 
     componentDidMount() {
-        const {fetchColors, fetchManufacturers, fetchCars, history} = this.props;
+        const {fetchColors, fetchManufacturers, fetchCars, history, initialize} = this.props;
+        const currentParams = queryString.parse(history.location.search);
+        initialize(currentParams);
         fetchColors();
         fetchManufacturers();
         fetchCars(history.location.search);
     }
 
     componentWillReceiveProps(nextProps) {
-        const {fetchCars, location} = nextProps;
-        if (this.props.location.search !== location.search) {
-            fetchCars(location.search)
-        }
+        const {fetchCars, location, initialize} = nextProps;
+        const currentParams = queryString.parse(location.search);
 
+
+        if (this.props.location.search !== location.search) {
+            fetchCars(location.search);
+            initialize(currentParams);
+        }
     }
 
     // mergreQuery = (query) => {
@@ -39,8 +45,12 @@ class CarListContainer extends Component {
     // };
     submitFilter = (values) => {
         const {history} = this.props;
-        let newQuery = stringify(values, {encode: false});
 
+        for (let key in values) {
+            if (values[key] === '' || key == "page") delete values[key];
+        }
+
+        let newQuery = stringify(values, {encode: false});
         if (Object.keys(values).length > 0) {
             newQuery = "?" + newQuery;
         }
@@ -58,12 +68,13 @@ class CarListContainer extends Component {
         const colors = colorlist.colors;
         const manufacturers = manufacturerlist.manufacturers;
 
+
         return (
             <div>
                 <aside>
                     {colors && manufacturers &&
                     <FormComponent handleSubmit={handleSubmit(this.submitFilter)} colors={colors}
-                                   manufacturers={manufacturers}/>}
+                                   manufacturers={manufacturers} location={location}/>}
                 </aside>
                 <section>
                     {carlist.cars &&
@@ -82,22 +93,11 @@ const mapStatToProps = state => {
     };
 };
 
-function validate(values) {
-    const errors = {};
-    // if (!values.color) {
-    //     errors.color = 'Please, Select value to filter';
-    // }
-    // if (!values.manufacturer) {
-    //     errors.manufacturer = 'Please, Select value to filter';
-    // }
-    return errors;
-}
-
 function mapDispatchToProps(dispatch) {
     return {...bindActionCreators(Actions, dispatch)}
 }
 
 export default connect(mapStatToProps, mapDispatchToProps)(reduxForm({
     form: 'filter',
-    validate
+
 }, mapStatToProps, mapDispatchToProps)(CarListContainer));
