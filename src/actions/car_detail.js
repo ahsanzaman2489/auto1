@@ -1,8 +1,9 @@
 import {CAR_DETAIL} from '../constanst/actionTypes';
+import type {SingleCarPayload} from '../constanst/types';
 import CarsService from '../service';
 
 const service = new CarsService();
 
-export const fetchCar = (stockNumber) => dispatch => service.fetchList('/cars/' + stockNumber).then(payload => {
+export const fetchCar = (stockNumber: number) => (dispatch: Function) => service.fetchList('/cars/' + stockNumber).then((payload: SingleCarPayload) => {
     dispatch({type: CAR_DETAIL, payload: payload.car});
 });

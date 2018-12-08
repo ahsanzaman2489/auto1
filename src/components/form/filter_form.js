@@ -3,9 +3,10 @@ import SelectBoxComponent from "./selectbox";
 import {Field} from 'redux-form';
 import queryString from "query-string";
 
-export default props => {
+type Props = { colors: Array<string>, manufacturers: Array<Object>, handleSubmit: Function, location: Object }
+export default (props: Props) => {
     const {colors, manufacturers, handleSubmit, location} = props;
-    const currentParams = queryString.parse(location.search);
+    const currentParams: Object = queryString.parse(location.search);
 
     return (
         <form onSubmit={handleSubmit} autoComplete="off">

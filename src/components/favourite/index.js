@@ -1,11 +1,12 @@
 import React from 'react';
 
-const FavouriteComponent = props => {
+type Props = { stockNumber: number, addToFavourite: Function, isFavourite: boolean, removeFromFavourite: Function };
+const FavouriteComponent = (props: Props) => {
 
-    const {car, addToFavourite, isFavourite, removeFromFavourite} = props;
+    const {stockNumber, addToFavourite, isFavourite, removeFromFavourite} = props;
     const renderButton = isFavourite => {
-        if (isFavourite) return (<button onClick={() => removeFromFavourite(car)}>remove</button>);
-        else return (<button onClick={() => addToFavourite(car)}>save</button>)
+        if (isFavourite) return (<button onClick={() => removeFromFavourite(stockNumber)}>remove</button>);
+        else return (<button onClick={() => addToFavourite(stockNumber)}>save</button>)
     };
     const renderText = isFavourite => {
         if (!isFavourite) {

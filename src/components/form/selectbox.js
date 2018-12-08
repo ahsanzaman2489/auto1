@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default field => {
+export default (field: Object) => {
 
     const {active, error, submitFailed} = field.meta;
     const {id, label, input, placeholder, options} = field;

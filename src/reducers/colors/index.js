@@ -1,6 +1,9 @@
-import {COLORS_LIST} from 'src/constanst/actionTypes';
+import {COLORS_LIST} from '../../constanst/actionTypes';
+import type {ActionTypes, ColorType} from "../../constanst/types";
 
-const colorState = (state = {}, action) => {
+type State = ColorType;
+
+const colorState = (state: ?State, action: ActionTypes): State => {
 
     switch (action.type) {
         case COLORS_LIST:

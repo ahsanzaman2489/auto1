@@ -1,6 +1,9 @@
-import {CAR_DETAIL} from 'src/constanst/actionTypes';
+import {CAR_DETAIL} from '../../constanst/actionTypes';
+import type {ActionTypes, CarsType} from '../../constanst/types';
 
-const carState = (state = {}, action) => {
+type State = CarsType;
+
+const carState = (state: ?State, action: ActionTypes): State => {
 
     switch (action.type) {
         case CAR_DETAIL:

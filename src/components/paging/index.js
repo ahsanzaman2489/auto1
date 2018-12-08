@@ -2,10 +2,10 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import queryString, {stringify} from "query-string";
 
+type Props = { totalPageCount: number, location: Object }
+const PagingComponent = (props: Props) => {
 
-const PagingComponent = props => {
-
-    const renderPaginationLink = (url, currentParams, page) => {
+    const renderPaginationLink = (url: string, currentParams: Object, page: number): string => {
         if (page === 0) page = 1;
         currentParams.page = page;
         const newQuery = stringify(currentParams, {encode: false});
@@ -13,7 +13,7 @@ const PagingComponent = props => {
     };
 
     const {totalPageCount, location} = props;
-    const currentParams = queryString.parse(location.search, 10);
+    const currentParams = queryString.parse(location.search);
     const currentPage = parseInt(currentParams.page, 10) || 1;
     return (
         <div>

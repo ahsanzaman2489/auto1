@@ -2,14 +2,27 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as Actions from '../../actions/car_list';
-
 import CarListComponent from '../../components/list';
 import FormComponent from '../../components/form/filter_form';
 import {reduxForm} from 'redux-form';
+import type {CarsType, ColorType, ManufacturersType} from '../../constanst/types';
 import queryString, {stringify} from "query-string";
 
+type Props = {
+    fetchColors: Function,
+    fetchManufacturers: Function,
+    fetchCars: Function,
+    history: Object,
+    location: Object,
+    initialize: Function,
+    handleSubmit: Function,
+    carList: CarsType | Object,
+    colorList: ColorType | Object,
+    manufacturerList: ManufacturersType | Object
+}
 
-class CarListContainer extends Component {
+
+class CarListContainer extends Component<Props> {
 
     componentDidMount() {
         const {fetchColors, fetchManufacturers, fetchCars, history, initialize} = this.props;
@@ -31,14 +44,14 @@ class CarListContainer extends Component {
         }
     }
 
-    submitFilter = values => {
+    submitFilter = (values: Object) => {
         const {history} = this.props;
 
-        for (let key in values) {
+        for (let key: string in values) {
             if (values[key] === '' || key === "page" || key === "sort") delete values[key];
         }
 
-        let newQuery = stringify(values, {encode: false});
+        let newQuery: string = stringify(values, {encode: false});
         if (Object.keys(values).length > 0) {
             newQuery = "?" + newQuery;
         }
@@ -50,17 +63,15 @@ class CarListContainer extends Component {
 
     };
 
-    submitSort = values => {
-        const sort = values.sort;
+    submitSort = (values: Object) => {
+        const sort: string = values.sort;
         const {history} = this.props;
-
-
-        const currentParams = queryString.parse(history.location.search);
+        const currentParams: Object = queryString.parse(history.location.search);
         currentParams['sort'] = sort;
-        for (let key in currentParams) {
+        for (let key: string in currentParams) {
             if (currentParams[key] === '') delete currentParams[key];
         }
-        let newQuery = stringify(currentParams, {encode: false});
+        let newQuery: string = stringify(currentParams, {encode: false});
         history.push({
             pathname: '/cars/list',
             search: newQuery,
@@ -70,9 +81,9 @@ class CarListContainer extends Component {
 
     render() {
         const {handleSubmit, carList, colorList, manufacturerList, location} = this.props;
-        const cars = carList;
-        const colors = colorList.colors;
-        const manufacturers = manufacturerList.manufacturers;
+        const cars: CarsType = carList;
+        const colors: ?Array<string> = colorList.colors;
+        const manufacturers: ?Array<Object> = manufacturerList.manufacturers;
 
         return (
             <div>
@@ -83,16 +94,16 @@ class CarListContainer extends Component {
                 </aside>
                 <section>
                     {cars.cars &&
-                    <CarListComponent cars={cars.cars} totalPageCount={cars.totalPageCount}
-                                      totalCount={cars.count} location={location}
-                                      submitSort={handleSubmit(this.submitSort)}/>}
+                    (<CarListComponent cars={cars.cars} totalPageCount={cars.totalPageCount}
+                                       totalCount={cars.count} location={location}
+                                       submitSort={handleSubmit(this.submitSort)}/>)}
                 </section>
             </div>
         )
     }
 }
 
-const mapStatToProps = state => {
+const mapStatToProps = (state: Object): Object => {
     return {
         carList: state.Cars,
         colorList: state.Colors,
@@ -100,11 +111,10 @@ const mapStatToProps = state => {
     };
 };
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Function) {
     return {...bindActionCreators(Actions, dispatch)}
 }
 
 export default connect(mapStatToProps, mapDispatchToProps)(reduxForm({
     form: 'filter',
-
 }, mapStatToProps, mapDispatchToProps)(CarListContainer));

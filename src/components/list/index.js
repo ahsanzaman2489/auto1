@@ -6,17 +6,18 @@ import PagingComponent from '../paging';
 import ResultsComponent from '../results';
 import queryString from "query-string";
 import {NO_DATA} from "../../constanst/app";
+import type {SingleCarType} from "../../constanst/types";
 import {Field} from 'redux-form';
 import SelectBoxComponent from "../form/selectbox";
 
-
-const CarListComponent = props => {
+type Props = { cars: Array<SingleCarType>, totalPageCount: number, location: Object, totalCount: number, submitSort: Function }
+const CarListComponent = (props: Props) => {
     const {cars, totalPageCount, location, totalCount, submitSort} = props;
     const sortingOptions = [
         {name: 'Mileage - Ascending', value: "asc"},
         {name: 'Mileage - Descending', value: "des"},
     ];
-    const renderList = cars => {
+    const renderList = (cars) => {
         return cars.map((item, index) => {
             return (
                 <div key={index}>
@@ -71,9 +72,9 @@ const CarListComponent = props => {
             </div>)
     };
 
-    const currentParams = queryString.parse(location.search);
-    const itemPerPage = 10;
-    const isCars = cars.length > 0;
+    const currentParams: Object = queryString.parse(location.search);
+    const itemPerPage: number = 10;
+    const isCars: boolean = cars.length > 0;
     return (
         <div>
             {isCars ? renderCars() : NO_DATA}

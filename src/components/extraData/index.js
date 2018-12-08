@@ -1,6 +1,7 @@
 import React from 'react';
 
-const ExtraDataComponent = props => {
+type Props = { item: { stockNumber: number, mileage: Object, fuelType: string, color: string } };
+const ExtraDataComponent = (props: Props) => {
 
     const {stockNumber, mileage, fuelType, color} = props.item;
 

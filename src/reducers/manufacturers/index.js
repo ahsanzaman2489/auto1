@@ -1,6 +1,9 @@
-import {MANUFACTURERS_LIST} from 'src/constanst/actionTypes';
+import {MANUFACTURERS_LIST} from '../../constanst/actionTypes';
+import type {ActionTypes, ManufacturersType} from "../../constanst/types";
 
-const manufacturersState = (state = {}, action) => {
+type State = ManufacturersType;
+
+const manufacturersState = (state: ?State, action: ActionTypes): State => {
 
     switch (action.type) {
         case MANUFACTURERS_LIST:

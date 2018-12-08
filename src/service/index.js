@@ -3,7 +3,7 @@ import 'whatwg-fetch';
 
 
 class CarsService {
-    fetchList = (END_POINT, query = "") => {
+    fetchList = (END_POINT: string, query: string = ""): Promise<any> => {
         return fetch(HOST + HOST_PORT + END_POINT + query, {method: 'get', mode: 'cors'}).then((response) => {
             return response.json();
         }).catch(error => {

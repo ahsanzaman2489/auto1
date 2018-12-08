@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const HeaderComponent = props => {
+const HeaderComponent = (props: { src: string }) => {
     const {src} = props;
     const nav = ['purchase', 'my orders', 'sell'];
     const renderNav = nav => {

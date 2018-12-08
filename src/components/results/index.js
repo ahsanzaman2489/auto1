@@ -1,7 +1,7 @@
 import React from 'react';
 
-
-const ResultsComponent = props => {
+type Props = { totalItemCount: number, currentPage: number, currentItemCount: number, itemPerPage: number }
+const ResultsComponent = (props: Props) => {
 
     const {totalItemCount, currentPage, currentItemCount, itemPerPage} = props;
 
