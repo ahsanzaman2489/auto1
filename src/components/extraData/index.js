@@ -7,8 +7,7 @@ const ExtraDataComponent = props => {
     return (
         <ul>
             <li>Stock # {stockNumber}</li>
-            <li>{mileage.number}</li>
-            <li>{mileage.unit}</li>
+            <li>{mileage.number} {mileage.unit}</li>
             <li>{fuelType}</li>
             <li>{color}</li>
         </ul>

@@ -13,8 +13,8 @@ const PagingComponent = props => {
     };
 
     const {totalPageCount, location} = props;
-    const currentParams = queryString.parse(location.search);
-    const currentPage = parseInt(currentParams.page) || 1;
+    const currentParams = queryString.parse(location.search, 10);
+    const currentPage = parseInt(currentParams.page, 10) || 1;
     return (
         <div>
             <div>

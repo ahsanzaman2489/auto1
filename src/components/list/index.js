@@ -1,13 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withRouter, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import ExtraDataComponent from '../extraData';
 import PagingComponent from '../paging';
 import ResultsComponent from '../results';
 import queryString from "query-string";
+import {NO_DATA} from "../../constanst/app";
+import {Field} from 'redux-form';
+import SelectBoxComponent from "../form/selectbox";
 
 
 const CarListComponent = props => {
+    const {cars, totalPageCount, location, totalCount, submitSort} = props;
+    const sortingOptions = [
+        {name: 'Mileage - Ascending', value: "asc"},
+        {name: 'Mileage - Descending', value: "des"},
+    ];
     const renderList = cars => {
         return cars.map((item, index) => {
             return (
@@ -30,25 +38,45 @@ const CarListComponent = props => {
         }
         return searchKeywords;
     };
+
     const renderCars = () => {
-        return (<div>
-            <h2>Available cars</h2>
-            {renderKeywords(currentParams)}
-            <h3><ResultsComponent currentItemCount={cars.length}
-                                  totalItemCount={totalCount} currentPage={currentParams.page || 1}
-                                  itemPerPage={itemPerPage}
-            /></h3>
-            {renderList(cars)}
-            {<PagingComponent totalPageCount={totalPageCount} location={location}/>}
-        </div>)
+        return (
+            <div>
+                <div>
+                    <div>
+                        <h2>Available cars</h2>
+                        {renderKeywords(currentParams)}
+                        <ResultsComponent currentItemCount={cars.length}
+                                          totalItemCount={totalCount} currentPage={currentParams.page || 1}
+                                          itemPerPage={itemPerPage}
+                        />
+                    </div>
+                    <div>
+                        <form name="sorting-form">
+                            <Field name="sort"
+                                   id="sort"
+                                   label="sort by"
+                                   component={SelectBoxComponent}
+                                   placeholder={'none'}
+                                   selected={currentParams.sort}
+                                   options={sortingOptions}
+                                   onChange={() => setTimeout(submitSort)}
+                            />
+                        </form>
+
+                    </div>
+                </div>
+                {renderList(cars)}
+                {<PagingComponent totalPageCount={totalPageCount} location={location}/>}
+            </div>)
     };
-    const {cars, totalPageCount, location, totalCount} = props;
+
     const currentParams = queryString.parse(location.search);
     const itemPerPage = 10;
     const isCars = cars.length > 0;
     return (
         <div>
-            {isCars ? renderCars() : "No cars available."}
+            {isCars ? renderCars() : NO_DATA}
         </div>
     );
 };
@@ -60,4 +88,4 @@ CarListComponent.propTypes = {
 
 };
 
-export default withRouter(CarListComponent);
+export default CarListComponent;

@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as Actions from '../../actions/car_list';
 
 import CarListComponent from '../../components/list';
-import FormComponent from '../../components/form';
+import FormComponent from '../../components/form/filter_form';
 import {reduxForm} from 'redux-form';
 import queryString, {stringify} from "query-string";
 
@@ -31,23 +31,11 @@ class CarListContainer extends Component {
         }
     }
 
-    // mergreQuery = (query) => {
-    //     const {location} = this.props;
-    //     const currentParams = queryString.parse(location.search);
-    //     const newParams = query;
-    //
-    //     for (const key in newParams) {
-    //
-    //         currentParams[key] = newParams[key];
-    //
-    //     }
-    //     return stringify(currentParams, {encode: false});
-    // };
     submitFilter = values => {
         const {history} = this.props;
 
         for (let key in values) {
-            if (values[key] === '' || key == "page") delete values[key];
+            if (values[key] === '' || key === "page" || key === "sort") delete values[key];
         }
 
         let newQuery = stringify(values, {encode: false});
@@ -62,12 +50,29 @@ class CarListContainer extends Component {
 
     };
 
+    submitSort = values => {
+        const sort = values.sort;
+        const {history} = this.props;
+
+
+        const currentParams = queryString.parse(history.location.search);
+        currentParams['sort'] = sort;
+        for (let key in currentParams) {
+            if (currentParams[key] === '') delete currentParams[key];
+        }
+        let newQuery = stringify(currentParams, {encode: false});
+        history.push({
+            pathname: '/cars/list',
+            search: newQuery,
+        });
+    };
+
 
     render() {
-        const {handleSubmit, carlist, colorlist, manufacturerlist, location} = this.props;
-        const colors = colorlist.colors;
-        const manufacturers = manufacturerlist.manufacturers;
-
+        const {handleSubmit, carList, colorList, manufacturerList, location} = this.props;
+        const cars = carList;
+        const colors = colorList.colors;
+        const manufacturers = manufacturerList.manufacturers;
 
         return (
             <div>
@@ -77,9 +82,10 @@ class CarListContainer extends Component {
                                    manufacturers={manufacturers} location={location}/>}
                 </aside>
                 <section>
-                    {carlist.cars &&
-                    <CarListComponent cars={carlist.cars} totalPageCount={carlist.totalPageCount}
-                                      totalCount={carlist.count} location={location}/>}
+                    {cars.cars &&
+                    <CarListComponent cars={cars.cars} totalPageCount={cars.totalPageCount}
+                                      totalCount={cars.count} location={location}
+                                      submitSort={handleSubmit(this.submitSort)}/>}
                 </section>
             </div>
         )
@@ -88,9 +94,9 @@ class CarListContainer extends Component {
 
 const mapStatToProps = state => {
     return {
-        carlist: state.Cars,
-        colorlist: state.Colors,
-        manufacturerlist: state.Manufacturers,
+        carList: state.Cars,
+        colorList: state.Colors,
+        manufacturerList: state.Manufacturers,
     };
 };
 
