@@ -3,6 +3,7 @@ import React from 'react';
 const ExtraDataComponent = props => {
 
     const {stockNumber, mileage, fuelType, color} = props.item;
+
     return (
         <ul>
             <li>Stock # {stockNumber}</li>

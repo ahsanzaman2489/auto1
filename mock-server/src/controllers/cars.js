@@ -40,7 +40,8 @@ function getCars(req, res) {
 
   res.json({
     cars: paginate(filteredCars, itemsPerPage, Number(page || 1)),
-    totalPageCount: Math.ceil(filteredCars.length / itemsPerPage)
+    totalPageCount: Math.ceil(filteredCars.length / itemsPerPage),
+    count: Math.ceil(filteredCars.length),
   });
 }
 

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as Actions from '../actions';
+import * as Actions from '../../actions/car_list';
 
-import CarListComponent from '../components/list';
-import FormComponent from '../components/form/';
+import CarListComponent from '../../components/list';
+import FormComponent from '../../components/form';
 import {reduxForm} from 'redux-form';
 import queryString, {stringify} from "query-string";
 
@@ -43,7 +43,7 @@ class CarListContainer extends Component {
     //     }
     //     return stringify(currentParams, {encode: false});
     // };
-    submitFilter = (values) => {
+    submitFilter = values => {
         const {history} = this.props;
 
         for (let key in values) {
@@ -78,7 +78,8 @@ class CarListContainer extends Component {
                 </aside>
                 <section>
                     {carlist.cars &&
-                    <CarListComponent cars={carlist.cars} totalPageCount={carlist.totalPageCount} location={location}/>}
+                    <CarListComponent cars={carlist.cars} totalPageCount={carlist.totalPageCount}
+                                      totalCount={carlist.count} location={location}/>}
                 </section>
             </div>
         )

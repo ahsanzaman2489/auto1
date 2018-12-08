@@ -4,7 +4,8 @@ import logo from './logo.png';
 
 import "react-table/react-table.css";
 import './App.css';
-import CarListContainer from "./containers";
+import CarListContainer from "./containers/car_list";
+import CarDetailContainer from "./containers/car_detail";
 import Header from "./components/header";
 import Footer from "./components/footer";
 
@@ -16,6 +17,7 @@ class App extends Component {
                 <Router>
                     <Switch>
                         <Route path={'/cars/list'} component={CarListContainer}/>
+                        <Route path={'/cars/detail/:stockNumber'} component={CarDetailContainer}/>
                         <Redirect exact from="/" to="/cars/list"/>
                     </Switch>
                 </Router>

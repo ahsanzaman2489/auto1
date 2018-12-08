@@ -4,7 +4,7 @@ import CarsService from '../service';
 
 const service = new CarsService();
 
-export const fetchCars = query => dispatch => service.fetchList('/cars',query).then(payload => {
+export const fetchCars = query => dispatch => service.fetchList('/cars', query).then(payload => {
     dispatch({type: actionTypes.CARS_LIST, payload});
 });
 
