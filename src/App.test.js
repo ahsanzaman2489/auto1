@@ -1,15 +1,31 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import App from './App';
-import configureStore from "./configureStore";
-const store = configureStore();
+import App from '../src/App';
+import {shallow} from 'enzyme';
+import Header from "./components/header";
+import Footer from "./components/footer";
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-    , div);
+
+const setUp = () => {
+    const props = {};
+    const wrapper = shallow(<App {...props}/>);
+    return {wrapper, props}
+};
+
+describe("App component", () => {
+    it('Should contain Header', () => {
+        const {wrapper} = setUp();
+        expect(wrapper.find(Header).length).toBe(1);
+    });
+
+    it('Should contain one Footer', () => {
+        const {wrapper} = setUp();
+        expect(wrapper.find(Footer).length).toBe(1);
+    });
+
+    it('Should contain Two Routes', () => {
+        const {wrapper} = setUp();
+        expect(wrapper.find("Route").length).toBe(2);
+    });
+
 });
+

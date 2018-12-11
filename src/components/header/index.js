@@ -12,7 +12,7 @@ const HeaderComponent = (props: { src: string }) => {
     return (
         <header>
             <div>
-                <img src={src} className={'logo'} alt="logo"/>
+                {/*<img src={src} className={'logo'} alt="logo"/>*/}
             </div>
             <div>
                 <ul>
