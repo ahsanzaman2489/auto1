@@ -10,7 +10,7 @@ import Footer from "./components/footer";
 class App extends Component<{}> {
     render() {
         return (
-            <div className={'App'}>
+            <div className="App">
                 <Header src={logo}/>
                 <Router>
                     <Switch>

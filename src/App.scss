@@ -1,5 +1,249 @@
-html{
-  body{
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
+$font-stack:  'Roboto', sans-serif;
+$white: #ffffff;
+$primary-color: #EA7F28;
+$secondry-color: #D37324;
+$graylighter: #EDEDED;
+$graydark: #4A4A4A;
+
+@mixin displaytype($value) {
+  display: $value;
+}
+@mixin bg($value) {
+  background: $value;
+}
+@mixin fontsize($value) {
+  font-size: $value;
+}
+@mixin textcase($value) {
+  text-transform: $value;
+}
+@mixin pull($float) {
+  float:$float;
+}
+@mixin paddingSep($left, $right, $top, $bottom) {
+  padding-left: $left;
+  padding-right: $right;
+  padding-top: $top;
+  padding-bottom: $bottom;
+}
+@mixin padding($value) {
+  padding: $value;
+}
+@mixin margin($value) {
+  margin: $value;
+}
+@mixin height($value) {
+  height: $value;
+}
+@mixin width($value) {
+  width: $value;
+}
+@mixin lineheight($value) {
+  line-height: $value;
+}
+@mixin border($color, $width, $style) {
+  border: {
+    color: $color;
+    width: $width;
+    style: $style;
   }
+}
+* {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-family: $font-stack;
+  @include fontsize(18px);
+}
+body{
+  font-family: $font-stack;
+  @include fontsize(14px);
+
+  color: $graydark;
+}
+a {
+  color: $primary-color;
+  text-decoration: none;
+  &:hover {
+      text-decoration: underline;
+    }
+}
+.container {
+  width: 1200px;
+  margin: auto;
+  background: $white;
+  @include padding(24px);
+}
+header, footer {
+box-sizing: border-box;
+@include height(80px);
+}
+
+  header, footer {
+  box-sizing: border-box;
+  @include height(80px);
+  }
+
+header {
+  border-bottom: 1px solid  $graylighter;
+}
+footer {
+  text-align: center;
+  border-top: 1px solid  $graylighter;
+  @include lineheight(80px);
+}
+.logo {
+  @include pull(left);
+}
+
+.main-menu {
+  @include pull(right);
+  ul {
+      loat: none;
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 0;
+      width: auto;
+      display: -ms-flexbox;
+      display: flex;
+      letter-spacing: 0;
+      max-height: 96px;
+      padding-right: 0;
+      padding-left: 0;
+      list-style: none;
+      >li {
+          position: relative;
+          display: block;
+          @include padding(24px);
+          @include textcase(capitalize);
+          @include fontsize(18px);
+      }
+  }
+}
+.mainRow {
+  @include displaytype(flex);
+  margin-top: 24px;
+  margin-bottom: 24px;
+  aside {
+    @include width(400px);
+    @include height(400px);
+    @include border($graylighter, 1px, solid );
+    @include padding(24px);
+    margin-right: 24px;
+    box-sizing: border-box;
+  }
+  section {
+    @include width(800px);
+  }
+}
+img {
+    width: 100%;
+}
+
+
+.carRow {
+    @include padding(12px);
+    border: 1px solid $graylighter;
+    margin-bottom: 12px;
+    @include displaytype(flex);
+    .thumbnail {
+        @include width(100px);
+        @include height(80px);
+        @include bg($graylighter);
+        margin-right: 24px;
+    }
+
+}
+
+
+
+
+
+
+.listingHead {
+    display: flex;
+    .resultStats {
+      @include width(60%);
+      p {
+          @include fontsize(18px);
+          padding-bottom: 1rem;
+      }
+      h2 {
+          padding-bottom: 1rem;
+      }
+    }
+    .sorting {
+      @include width(40%);
+       form {
+         label {
+              display: block;    margin-bottom: 0.5rem;
+          }
+       }
+    }
+}
+form {
+  select {
+      @include border(transparent, 0, none);
+      @include height(2.5rem);
+      @include width(120%);
+      border-radius: 4px;
+      padding: 8px;
+      box-sizing: border-box;
+  }
+  input[type="submit"] {
+    @include height(32px);
+    @include width(128px);
+    box-sizing: border-box;
+    text-align: center;
+    @include lineheight(32px);
+    @include bg($primary-color);
+    @include border(transparent, 0, none);
+    color: $white;
+    border-radius: 3px;
+    @include textcase(capitalize);
+    cursor: pointer;
+    margin-top:12px;
+    &:hover {
+      @include bg($secondry-color);
+    }
+}
+}
+.float-right {
+  @include pull(right)
+}
+.custom-select {
+  position: relative;
+  font-family: Arial;
+  background: #fff;
+  border: 1px solid #EDEDED;
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 4px;
+  /* padding: 8px; */
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.custom-select:after {
+    content: "d";
+    position: absolute;
+    content: "";
+    top: 18px;
+    right: 12px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #9E9E9E transparent transparent transparent;
+}
+
+.custom-select select:focus {
+    border: none;
+    outline: -webkit-focus-ring-color auto 0px;
 }

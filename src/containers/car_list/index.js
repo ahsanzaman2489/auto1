@@ -22,15 +22,15 @@ type Props = {
 }
 
 
-class CarListContainer extends Component<Props> {
+export class CarListContainer extends Component<Props, null> {
 
     componentDidMount() {
-        const {fetchColors, fetchManufacturers, fetchCars, history, initialize} = this.props;
-        const currentParams = queryString.parse(history.location.search);
+        const {fetchColors, fetchManufacturers, fetchCars, location, initialize} = this.props;
+        const currentParams = queryString.parse(location.search);
         initialize(currentParams);
         fetchColors();
         fetchManufacturers();
-        fetchCars(history.location.search);
+        fetchCars(location.search);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -52,9 +52,6 @@ class CarListContainer extends Component<Props> {
         }
 
         let newQuery: string = stringify(values, {encode: false});
-        if (Object.keys(values).length > 0) {
-            newQuery = "?" + newQuery;
-        }
 
         history.push({
             pathname: '/cars/list',
@@ -65,8 +62,8 @@ class CarListContainer extends Component<Props> {
 
     submitSort = (values: Object) => {
         const sort: string = values.sort;
-        const {history} = this.props;
-        const currentParams: Object = queryString.parse(history.location.search);
+        const {history, location} = this.props;
+        const currentParams: Object = queryString.parse(location.search);
         currentParams['sort'] = sort;
         for (let key: string in currentParams) {
             if (currentParams[key] === '') delete currentParams[key];
@@ -83,21 +80,23 @@ class CarListContainer extends Component<Props> {
         const {handleSubmit, carList, colorList, manufacturerList, location} = this.props;
         const cars: CarsType = carList;
         const colors: ?Array<string> = colorList.colors;
-        const manufacturers: ?Array<Object> = manufacturerList.manufacturers;
 
+        const manufacturers: ?Array<Object> = manufacturerList.manufacturers;
         return (
-            <div>
-                <aside>
-                    {colors && manufacturers &&
-                    <FormComponent handleSubmit={handleSubmit(this.submitFilter)} colors={colors}
-                                   manufacturers={manufacturers} location={location}/>}
-                </aside>
-                <section>
-                    {cars.cars &&
-                    (<CarListComponent cars={cars.cars} totalPageCount={cars.totalPageCount}
-                                       totalCount={cars.count} location={location}
-                                       submitSort={handleSubmit(this.submitSort)}/>)}
-                </section>
+            <div className="container">
+                <div className="mainRow">
+                    <aside>
+                        {colors && manufacturers &&
+                        <FormComponent handleSubmit={handleSubmit(this.submitFilter)} colors={colors}
+                                       manufacturers={manufacturers} location={location}/>}
+                    </aside>
+                    <section>
+                        {cars.cars &&
+                        (<CarListComponent cars={cars.cars} totalPageCount={cars.totalPageCount}
+                                           totalCount={cars.count} location={location}
+                                           submitSort={handleSubmit(this.submitSort)}/>)}
+                    </section>
+                </div>
             </div>
         )
     }

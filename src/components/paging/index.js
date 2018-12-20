@@ -17,22 +17,20 @@ const PagingComponent = (props: Props) => {
     const currentPage = parseInt(currentParams.page, 10) || 1;
     return (
         <div>
-            <div>
-                <ul>
-                    {currentPage !== 1 &&
-                    <li><NavLink to={renderPaginationLink('/cars/list', currentParams, 1)}>first</NavLink></li>}
-                    {currentPage !== 1 && <li><NavLink
-                        to={renderPaginationLink('/cars/list', currentParams, currentPage - 1)}>previous</NavLink>
-                    </li>}
-                    <li>page {currentPage} of {totalPageCount}</li>
-                    {currentPage !== totalPageCount &&
-                    <li><NavLink to={renderPaginationLink('/cars/list', currentParams, currentPage + 1)}>next</NavLink>
-                    </li>}
-                    {currentPage !== totalPageCount &&
-                    <li><NavLink to={renderPaginationLink('/cars/list', currentParams, totalPageCount)}>last</NavLink>
-                    </li>}
-                </ul>
-            </div>
+            <ul>
+                {currentPage !== 1 &&
+                <li><NavLink to={renderPaginationLink('/cars/list', currentParams, 1)}>first</NavLink></li>}
+                {currentPage !== 1 && <li><NavLink
+                    to={renderPaginationLink('/cars/list', currentParams, currentPage - 1)}>previous</NavLink>
+                </li>}
+                <li>page {currentPage} of {totalPageCount}</li>
+                {currentPage !== totalPageCount &&
+                <li><NavLink to={renderPaginationLink('/cars/list', currentParams, currentPage + 1)}>next</NavLink>
+                </li>}
+                {currentPage !== totalPageCount &&
+                <li><NavLink to={renderPaginationLink('/cars/list', currentParams, totalPageCount)}>last</NavLink>
+                </li>}
+            </ul>
         </div>
     );
 };

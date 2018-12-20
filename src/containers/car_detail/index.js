@@ -16,9 +16,7 @@ type Props = {
     fetchCar: Function
 
 }
-
-
-class CarDetailContainer extends Component<Props, State> {
+export class CarDetailContainer extends Component<Props, State> {
     state = {
         isFavourite: false
     };

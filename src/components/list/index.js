@@ -20,9 +20,9 @@ const CarListComponent = (props: Props) => {
     const renderList = (cars) => {
         return cars.map((item, index) => {
             return (
-                <div key={index}>
-                    <div><img src={item.pictureUrl} alt=""/></div>
-                    <div>
+                <div key={index} className="carRow">
+                    <div className="thumbnail"><img src={item.pictureUrl} alt=""/></div>
+                    <div className="carSpec">
                         <h1>{item.manufacturerName} {item.modelName}</h1>
                         <ExtraDataComponent item={item}/>
                         <NavLink to={`/cars/detail/${item.stockNumber}`}>view details</NavLink>
@@ -43,8 +43,8 @@ const CarListComponent = (props: Props) => {
     const renderCars = () => {
         return (
             <div>
-                <div>
-                    <div>
+                <div className="listingHead">
+                    <div className="resultStats">
                         <h2>Available cars</h2>
                         {renderKeywords(currentParams)}
                         <ResultsComponent currentItemCount={cars.length}
@@ -76,7 +76,7 @@ const CarListComponent = (props: Props) => {
     const itemPerPage: number = 10;
     const isCars: boolean = cars.length > 0;
     return (
-        <div>
+        <div className="NO_DATA">
             {isCars ? renderCars() : NO_DATA}
         </div>
     );

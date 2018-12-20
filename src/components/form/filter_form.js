@@ -1,12 +1,11 @@
 import React from 'react';
 import SelectBoxComponent from "./selectbox";
 import {Field} from 'redux-form';
-import queryString from "query-string";
 
 type Props = { colors: Array<string>, manufacturers: Array<Object>, handleSubmit: Function, location: Object }
-export default (props: Props) => {
-    const {colors, manufacturers, handleSubmit, location} = props;
-    const currentParams: Object = queryString.parse(location.search);
+const FormComponent = (props: Props) => {
+    const {colors, manufacturers, handleSubmit} = props;
+
 
     return (
         <form onSubmit={handleSubmit} autoComplete="off">
@@ -15,7 +14,6 @@ export default (props: Props) => {
                    label="color"
                    component={SelectBoxComponent}
                    placeholder={'All car colors'}
-                   selected={currentParams.color}
                    options={colors}
             />
 
@@ -23,14 +21,15 @@ export default (props: Props) => {
                    id="manufacturer"
                    label="manufacturer"
                    component={SelectBoxComponent}
-                   options={manufacturers}
-                   selected={currentParams.manufacturer}
                    placeholder={'All manufacturers'}
+                   options={manufacturers}
             />
 
-            <div>
-                <input type="submit" value="filter"/>
+            <div className="float-right">
+                <input type="submit" value="filter" id="submit"/>
             </div>
         </form>
     );
 };
+
+export default FormComponent;

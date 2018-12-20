@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
+    "test": "node scripts/test.js --env=jsdom --verbose",
     "flow": "flow",
     "flow:watch": "flow-watch"
   },
@@ -71,6 +71,7 @@
     "postcss-loader": "^3.0.0",
     "query-string": "^6.2.0",
     "react-test-renderer": "^15",
+    "redux-mock-store": "^1.5.3",
     "redux-testkit": "^1.0.6",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^7.1.0",

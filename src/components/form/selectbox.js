@@ -17,11 +17,13 @@ export default (field: Object) => {
         <div className="row">
             <div className="form-group col-md-6 col-md-offset-3">
                 <label htmlFor={id}>{label}</label>
-                <select {...input} id={id} className="form-control">
-                    <option value="">{placeholder}</option>
-                    {renderOptions(options)}
-                </select>
-                {!active && (error && submitFailed) && <span className="text-danger">{error}</span>}
+                <div className="custom-select">
+                    <select {...input} id={id} className="form-control">
+                        <option value="">{placeholder}</option>
+                        {renderOptions(options)}
+                    </select>
+                    {!active && (error && submitFailed) && <span className="text-danger">{error}</span>}
+                </div>
             </div>
         </div>
     );
