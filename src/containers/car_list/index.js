@@ -32,7 +32,6 @@ export class CarListContainer extends Component<Props, null> {
         fetchManufacturers();
         fetchCars(location.search);
     }
-
     componentWillReceiveProps(nextProps) {
         const {fetchCars, location, initialize} = nextProps;
         const currentParams = queryString.parse(location.search);
@@ -83,7 +82,7 @@ export class CarListContainer extends Component<Props, null> {
 
         const manufacturers: ?Array<Object> = manufacturerList.manufacturers;
         return (
-            <div className="container">
+            <div className="container pBtm80">
                 <div className="mainRow">
                     <aside>
                         {colors && manufacturers &&
@@ -110,7 +109,7 @@ const mapStatToProps = (state: Object): Object => {
     };
 };
 
-function mapDispatchToProps(dispatch: Function) {
+function mapDispatchToProps(dispatch: Function): Object {
     return {...bindActionCreators(Actions, dispatch)}
 }
 

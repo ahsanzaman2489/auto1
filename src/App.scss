@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
-$font-stack:  'Roboto', sans-serif;
+$font-stack: 'Roboto', sans-serif;
 $white: #ffffff;
 $primary-color: #EA7F28;
 $secondry-color: #D37324;
@@ -10,39 +10,50 @@ $graydark: #4A4A4A;
 @mixin displaytype($value) {
   display: $value;
 }
+
 @mixin bg($value) {
   background: $value;
 }
+
 @mixin fontsize($value) {
   font-size: $value;
 }
+
 @mixin textcase($value) {
   text-transform: $value;
 }
+
 @mixin pull($float) {
-  float:$float;
+  float: $float;
 }
+
 @mixin paddingSep($left, $right, $top, $bottom) {
   padding-left: $left;
   padding-right: $right;
   padding-top: $top;
   padding-bottom: $bottom;
 }
+
 @mixin padding($value) {
   padding: $value;
 }
+
 @mixin margin($value) {
   margin: $value;
 }
+
 @mixin height($value) {
   height: $value;
 }
+
 @mixin width($value) {
   width: $value;
 }
+
 @mixin lineheight($value) {
   line-height: $value;
 }
+
 @mixin border($color, $width, $style) {
   border: {
     color: $color;
@@ -50,82 +61,105 @@ $graydark: #4A4A4A;
     style: $style;
   }
 }
+
 * {
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   list-style: none;
   box-sizing: border-box;
 }
-h1,h2,h3,h4,h5,h6 {
+
+h1, h2, h3, h4, h5, h6 {
   font-family: $font-stack;
   @include fontsize(18px);
 }
-body{
+
+body {
   font-family: $font-stack;
   @include fontsize(14px);
-
+  background: $white;
   color: $graydark;
 }
+
 a {
   color: $primary-color;
   text-decoration: none;
   &:hover {
-      text-decoration: underline;
-    }
+    text-decoration: underline;
+  }
 }
+
+p {
+  line-height: 25px;
+}
+
 .container {
   width: 1200px;
   margin: auto;
   background: $white;
-  @include padding(24px);
-}
-header, footer {
-box-sizing: border-box;
-@include height(80px);
 }
 
-  header, footer {
+header, footer {
+  @include height(80px);
+}
+
+header, footer {
   box-sizing: border-box;
   @include height(80px);
-  }
+}
+
+.banner {
+  height: 320px;
+  @include bg($graylighter);
+}
 
 header {
-  border-bottom: 1px solid  $graylighter;
+  border-bottom: 1px solid $graylighter;
 }
+
 footer {
   text-align: center;
-  border-top: 1px solid  $graylighter;
+  border-top: 1px solid $graylighter;
   @include lineheight(80px);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  @include bg($white);
 }
+
 .logo {
   @include pull(left);
+  max-width: 160px;
+  margin-top: 12px;
 }
 
 .main-menu {
   @include pull(right);
   ul {
-      loat: none;
+    loat: none;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    width: auto;
+    display: -ms-flexbox;
+    display: flex;
+    letter-spacing: 0;
+    max-height: 96px;
+    padding-right: 0;
+    padding-left: 0;
+    list-style: none;
+    > li {
       position: relative;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 0;
-      width: auto;
-      display: -ms-flexbox;
-      display: flex;
-      letter-spacing: 0;
-      max-height: 96px;
-      padding-right: 0;
-      padding-left: 0;
-      list-style: none;
-      >li {
-          position: relative;
-          display: block;
-          @include padding(24px);
-          @include textcase(capitalize);
-          @include fontsize(18px);
-      }
+      display: block;
+      @include padding(24px);
+      @include textcase(capitalize);
+      @include fontsize(18px);
+    }
   }
 }
+
 .mainRow {
   @include displaytype(flex);
   margin-top: 24px;
@@ -133,7 +167,7 @@ footer {
   aside {
     @include width(400px);
     @include height(400px);
-    @include border($graylighter, 1px, solid );
+    @include border($graylighter, 2px, solid);
     @include padding(24px);
     margin-right: 24px;
     box-sizing: border-box;
@@ -142,59 +176,90 @@ footer {
     @include width(800px);
   }
 }
-img {
-    width: 100%;
-}
 
+img {
+  width: 100%;
+}
 
 .carRow {
-    @include padding(12px);
-    border: 1px solid $graylighter;
-    margin-bottom: 12px;
-    @include displaytype(flex);
-    .thumbnail {
-        @include width(100px);
-        @include height(80px);
-        @include bg($graylighter);
-        margin-right: 24px;
+  @include padding(12px);
+  @include border($graylighter, 2px, solid);
+  margin-bottom: 12px;
+  @include displaytype(flex);
+  .thumbnail {
+    @include width(100px);
+    @include height(70px);
+    @include bg($graylighter);
+    margin-right: 24px;
+    img {
+      width: 100%;
+      display: block;
+      max-width: 100%;
+      height: 100%;
     }
+  }
 
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
+.pagination {
+  text-align: center;
+  margin-top: 24px;
+  ul {
+    li {
+      display: inline-block;
+      @include fontsize(14px);
+      padding: 0 1rem;
+      text-transform: capitalize;
+      color: $graydark;
+      span {
+        font-weight: 600;
+      }
+      a {
 
-
-
-
+        &.disabled {
+          color: $graydark;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}
 
 .listingHead {
-    display: flex;
-    .resultStats {
-      @include width(60%);
-      p {
-          @include fontsize(18px);
-          padding-bottom: 1rem;
-      }
-      h2 {
-          padding-bottom: 1rem;
-      }
+  display: flex;
+  .resultStats {
+    @include width(60%);
+    p {
+      @include fontsize(18px);
+      padding-bottom: 1rem;
     }
-    .sorting {
-      @include width(40%);
-       form {
-         label {
-              display: block;    margin-bottom: 0.5rem;
-          }
-       }
+    h2 {
+      padding-bottom: 1rem;
     }
+  }
+  .sorting {
+    @include width(40%);
+  }
 }
+
 form {
+  .form-group {
+    margin-bottom: 0.75rem;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
   select {
-      @include border(transparent, 0, none);
-      @include height(2.5rem);
-      @include width(120%);
-      border-radius: 4px;
-      padding: 8px;
-      box-sizing: border-box;
+    @include border(transparent, 0, none);
+    @include height(2.5rem);
+    @include width(120%);
+    border-radius: 4px;
+    padding: 8px;
+    box-sizing: border-box;
   }
   input[type="submit"] {
     @include height(32px);
@@ -208,15 +273,17 @@ form {
     border-radius: 3px;
     @include textcase(capitalize);
     cursor: pointer;
-    margin-top:12px;
+    margin-top: 12px;
     &:hover {
       @include bg($secondry-color);
     }
+  }
 }
-}
+
 .float-right {
   @include pull(right)
 }
+
 .custom-select {
   position: relative;
   font-family: Arial;
@@ -231,19 +298,152 @@ form {
   overflow: hidden;
 }
 
+button {
+  @include height(32px);
+  @include width(128px);
+  box-sizing: border-box;
+  text-align: center;
+  @include lineheight(32px);
+  @include bg($primary-color);
+  @include border(transparent, 0, none);
+  color: $white;
+  border-radius: 3px;
+  @include textcase(capitalize);
+  cursor: pointer;
+  margin-top: 12px;
+  &:hover {
+    @include bg($secondry-color);
+  }
+
+}
+
+:focus {
+  outline: -webkit-focus-ring-color auto 0;
+}
+
 .custom-select:after {
-    content: "d";
-    position: absolute;
-    content: "";
-    top: 18px;
-    right: 12px;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-color: #9E9E9E transparent transparent transparent;
+  position: absolute;
+  content: "";
+  top: 18px;
+  right: 12px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #9E9E9E transparent transparent transparent;
 }
 
 .custom-select select:focus {
-    border: none;
-    outline: -webkit-focus-ring-color auto 0px;
+  border: none;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.carSpec {
+  ul {
+    padding: 0.5rem 0;
+    li {
+      @include displaytype(inline-block);
+      margin-right: 18px;
+      position: relative;
+
+      &:not(:last-child):after {
+        content: '';
+        width: 5px;
+        height: 10px;
+        position: absolute;
+        right: -13px;
+        top: 7px;
+        border-top: $graydark 2px solid;
+
+      }
+
+    }
+  }
+
+}
+
+.detailCont {
+  display: flex;
+  padding: 24px;
+  .specs {
+    width: 800px;
+    padding-right: 24px;
+    box-sizing: border-box;
+  }
+  .add-favourite {
+    width: 600px;
+    padding: 24px;
+    border: 1px solid #EDEDED;
+    margin-bottom: 12px;
+    margin-left: 32px;
+    height: 160px;
+    position: relative;
+
+
+  }
+  .carSpec {
+    h1 {
+      @include fontsize(32px);
+    }
+    ul li {
+      @include fontsize(24px);
+
+      &:not(:last-child):after {
+        top: 14px;
+      }
+
+    }
+  }
+}
+
+.btnfixedbtm {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+}
+
+.pBtm80 {
+  padding-bottom: 80px;
+}
+
+.pagenotfound {
+  text-align: center;
+  position: fixed;
+  width: 600px;
+  margin: auto;
+  height: 240px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  .logo {
+    float: none;
+    margin: auto;
+  }
+}
+
+.content404 {
+  h1 {
+    font-size: 32px;
+    padding: 1rem 0;
+  }
+  p {
+    font-size: 24px;
+    line-height: 2;
+  }
+}
+
+.noData {
+  @include fontsize(18px);
+  text-align: center;
+}
+
+.car-detail {
+  .container {
+    width: 1000px;
+  }
+
+  .noData {
+    margin-top: 24px;
+  }
 }

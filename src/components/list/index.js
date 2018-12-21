@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {NavLink} from 'react-router-dom';
 import ExtraDataComponent from '../extraData';
 import PagingComponent from '../paging';
@@ -25,19 +24,11 @@ const CarListComponent = (props: Props) => {
                     <div className="carSpec">
                         <h1>{item.manufacturerName} {item.modelName}</h1>
                         <ExtraDataComponent item={item}/>
-                        <NavLink to={`/cars/detail/${item.stockNumber}`}>view details</NavLink>
+                        <NavLink to={`/cars/detail/${item.stockNumber}`}>View details</NavLink>
                     </div>
                 </div>
             );
         })
-    };
-    const renderKeywords = searchParams => {
-        let searchKeywords = [];
-
-        for (let key in searchParams) {
-            searchKeywords.push(<p key={key}>{key + " : " + searchParams[key]}</p>);
-        }
-        return searchKeywords;
     };
 
     const renderCars = () => {
@@ -46,17 +37,17 @@ const CarListComponent = (props: Props) => {
                 <div className="listingHead">
                     <div className="resultStats">
                         <h2>Available cars</h2>
-                        {renderKeywords(currentParams)}
+                        {/*{renderKeywords(currentParams)}*/}
                         <ResultsComponent currentItemCount={cars.length}
                                           totalItemCount={totalCount} currentPage={currentParams.page || 1}
                                           itemPerPage={itemPerPage}
                         />
                     </div>
-                    <div>
+                    <div className="sorting">
                         <form name="sorting-form">
                             <Field name="sort"
                                    id="sort"
-                                   label="sort by"
+                                   label="Sort by"
                                    component={SelectBoxComponent}
                                    placeholder={'none'}
                                    selected={currentParams.sort}
@@ -76,17 +67,11 @@ const CarListComponent = (props: Props) => {
     const itemPerPage: number = 10;
     const isCars: boolean = cars.length > 0;
     return (
-        <div className="NO_DATA">
-            {isCars ? renderCars() : NO_DATA}
+        <div>
+            {isCars ? renderCars() : <p className="noData">{NO_DATA}</p>}
         </div>
     );
 };
 
-CarListComponent.propTypes = {
-    cars: PropTypes.array.isRequired,
-    totalPageCount: PropTypes.number.isRequired,
-    totalCount: PropTypes.number.isRequired,
-
-};
 
 export default CarListComponent;

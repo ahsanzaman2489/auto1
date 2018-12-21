@@ -1,8 +1,6 @@
 import React from 'react';
 import App from '../App';
 import {shallow} from 'enzyme';
-import Header from "../components/header";
-import Footer from "../components/footer";
 
 const defaultProps = {};
 
@@ -14,19 +12,9 @@ const setup = (props= {},state=null) => {
 };
 
 describe("App component", () => {
-    it('Should contain Header', () => {
+    it('Should render main route component', () => {
         const {wrapper} = setup();
-        expect(wrapper.find(Header).length).toBe(1);
-    });
-
-    it('Should contain one Footer', () => {
-        const {wrapper} = setup();
-        expect(wrapper.find(Footer).length).toBe(1);
-    });
-
-    it('Should contain Two Routes', () => {
-        const {wrapper} = setup();
-        expect(wrapper.find("Route").length).toBe(2);
+        expect(wrapper.find("MainRouterComponent").length).toBe(1);
     });
 
 });

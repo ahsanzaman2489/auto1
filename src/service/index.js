@@ -7,7 +7,7 @@ class CarsService {
         return fetch(HOST + HOST_PORT + END_POINT + query, {method: 'get', mode: 'cors'}).then((response) => {
             return response.json();
         }).catch(error => {
-            console.log('error ===>', error);
+            return error;
         });
     };
 }

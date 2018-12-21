@@ -1,4 +1,6 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
+
 
 
 const HeaderComponent = (props: { src: string }) => {
@@ -13,7 +15,7 @@ const HeaderComponent = (props: { src: string }) => {
         <div className="container">
             <header>
                 <div className="logo">
-                    <img src={src} className={'logo'} alt="logo"/>
+                    <NavLink to={'/'}><img src={src} className={'logo'} alt="logo"/></NavLink>
                 </div>
                 <div className="main-menu">
                     <ul>

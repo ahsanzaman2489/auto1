@@ -57,6 +57,12 @@ describe("CarListContainer", () => {
         });
 
 
+        submitFilter({color: 'red', manufacturer: "bmw", page: 1, sort: 'des'});
+        expect(props.history.push).toHaveBeenCalledTimes(2);
+        expect(props.history.push).toHaveBeenCalledWith({
+            pathname: "/cars/list",
+            search: "color=red&manufacturer=bmw"
+        });
 
     });
 

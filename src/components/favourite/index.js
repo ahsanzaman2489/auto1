@@ -5,8 +5,8 @@ const FavouriteComponent = (props: Props) => {
 
     const {stockNumber, addToFavourite, isFavourite, removeFromFavourite} = props;
     const renderButton = isFavourite => {
-        if (isFavourite) return (<button onClick={() => removeFromFavourite(stockNumber)}>remove</button>);
-        else return (<button onClick={() => addToFavourite(stockNumber)}>save</button>)
+        if (isFavourite) return (<button className="float-right btnfixedbtm" onClick={() => removeFromFavourite(stockNumber)}>remove</button>);
+        else return (<button className="float-right btnfixedbtm" onClick={() => addToFavourite(stockNumber)}>save</button>)
     };
     const renderText = isFavourite => {
         if (!isFavourite) {
@@ -16,7 +16,7 @@ const FavouriteComponent = (props: Props) => {
         } else return (`This Car is your favourite`);
     };
     return (
-        <div className={"add-favourite"}>
+        <div className="add-favourite">
             <p>{renderText(isFavourite)}</p>
             {renderButton(isFavourite)}
         </div>

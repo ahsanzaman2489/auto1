@@ -5,6 +5,8 @@ import {fetchCar} from '../../actions/car_detail';
 import ExtraDataComponent from '../../components/extraData';
 import FavouriteComponent from '../../components/favourite';
 import type {SingleCarType} from '../../constanst/types';
+import {NO_DATA} from '../../constanst/app';
+
 
 type State = {
     isFavourite: boolean
@@ -16,12 +18,13 @@ type Props = {
     fetchCar: Function
 
 }
+
 export class CarDetailContainer extends Component<Props, State> {
     state = {
         isFavourite: false
     };
 
-    componentDidMount(props) {
+    componentDidMount() {
         const {fetchCar, match} = this.props;
         fetchCar(match.params.stockNumber);
     }
@@ -65,7 +68,7 @@ export class CarDetailContainer extends Component<Props, State> {
 
 
     render() {
-        const {car} = this.props;
+        const {car,location,history} = this.props;
         const isDataAvailable: boolean = Object.keys(car).length > 0;
         const carDescription: string = `This car is currently available and can be delivered as soon as
             tomorrow morning. Please be aware that delivery times shown in
@@ -73,21 +76,31 @@ export class CarDetailContainer extends Component<Props, State> {
             conditions.`;
 
         return (
-            <div className={"car-detail"}>
-                <div className={"banner"}></div>
-                <div className={"container"}>
-                    <div className={"specs"}>
-                        <h1>{car.manufacturerName} {car.modelName}</h1>
-                        <div>{isDataAvailable && <ExtraDataComponent item={car}/>}</div>
-                        <p>
-                            {carDescription}
-                        </p>
-                    </div>
-                    {isDataAvailable &&
-                    <FavouriteComponent stockNumber={car.stockNumber} addToFavourite={this.addToFavourite}
-                                        removeFromFavourite={this.removeFromFavourite}
-                                        isFavourite={this.state.isFavourite}/>}
-                </div>
+
+            <div className="car-detail">
+                {Object.keys(car).length === 0 && car
+                    ? (<div className="container"><p className="noData">{NO_DATA}</p></div>)
+                    : (<div>
+                        <div className="banner"></div>
+                        <div className="container">
+                            <div className="detailCont">
+
+                                <div className="carSpec">
+                                    <h1>{car.manufacturerName} {car.modelName}</h1>
+                                    <div>{isDataAvailable && <ExtraDataComponent item={car}/>}</div>
+                                    <p>
+                                        {carDescription}
+                                    </p>
+                                </div>
+                                {isDataAvailable &&
+                                <FavouriteComponent stockNumber={car.stockNumber} addToFavourite={this.addToFavourite}
+                                                    removeFromFavourite={this.removeFromFavourite}
+                                                    isFavourite={this.state.isFavourite}/>}
+                            </div>
+                        </div>
+                    </div>)
+                }
+
             </div>
         )
     }

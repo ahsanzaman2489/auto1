@@ -16,20 +16,21 @@ const PagingComponent = (props: Props) => {
     const currentParams = queryString.parse(location.search);
     const currentPage = parseInt(currentParams.page, 10) || 1;
     return (
-        <div>
-            <ul>
-                {currentPage !== 1 &&
-                <li><NavLink to={renderPaginationLink('/cars/list', currentParams, 1)}>first</NavLink></li>}
-                {currentPage !== 1 && <li><NavLink
-                    to={renderPaginationLink('/cars/list', currentParams, currentPage - 1)}>previous</NavLink>
-                </li>}
-                <li>page {currentPage} of {totalPageCount}</li>
-                {currentPage !== totalPageCount &&
-                <li><NavLink to={renderPaginationLink('/cars/list', currentParams, currentPage + 1)}>next</NavLink>
-                </li>}
-                {currentPage !== totalPageCount &&
-                <li><NavLink to={renderPaginationLink('/cars/list', currentParams, totalPageCount)}>last</NavLink>
-                </li>}
+        <div className="pagination">
+            <ul >
+                <li><NavLink to={renderPaginationLink('/cars/list', currentParams, 1)}
+                             className={currentPage === 1 ? 'disabled' : ''}>first</NavLink></li>
+                <li><NavLink
+                    to={renderPaginationLink('/cars/list', currentParams, currentPage - 1)}
+                    className={currentPage === 1 ? 'disabled' : ''}>previous</NavLink>
+                </li>
+                <li><span>page {currentPage} of {totalPageCount}</span></li>
+                <li><NavLink to={renderPaginationLink('/cars/list', currentParams, currentPage + 1)}
+                             className={currentPage === totalPageCount ? 'disabled' : ''}>next</NavLink>
+                </li>
+                <li><NavLink to={renderPaginationLink('/cars/list', currentParams, totalPageCount)}
+                             className={currentPage === totalPageCount ? 'disabled' : ''}>last</NavLink>
+                </li>
             </ul>
         </div>
     );
