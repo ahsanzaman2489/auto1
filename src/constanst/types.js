@@ -8,7 +8,7 @@ export type SingleCarType = {
     "pictureUrl": string
 };
 
-export type CarsType = { cars: Array<SingleCarType>, totalPageCount: number, count: number };
+export type CarsType = { cars: Array<SingleCarType>, totalPageCount: number, count: number,isLoading:boolean };
 export type ColorType = { colors: Array<string> }
 export type ManufacturersType = { manufacturers: Array<Object> }
 export type ActionTypes = { type: String, payload: Object }

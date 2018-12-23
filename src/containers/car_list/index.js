@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as Actions from '../../actions/car_list';
-import CarListComponent from '../../components/list';
-import FormComponent from '../../components/form/filter_form';
 import {reduxForm} from 'redux-form';
 import type {CarsType, ColorType, ManufacturersType} from '../../constanst/types';
 import queryString, {stringify} from "query-string";
+import LazyLoadingComponent from "../../components/lazy_loading";
+import loading from "../../loading.PNG";
 
 type Props = {
     fetchColors: Function,
@@ -32,6 +32,7 @@ export class CarListContainer extends Component<Props, null> {
         fetchManufacturers();
         fetchCars(location.search);
     }
+
     componentWillReceiveProps(nextProps) {
         const {fetchCars, location, initialize} = nextProps;
         const currentParams = queryString.parse(location.search);
@@ -80,20 +81,28 @@ export class CarListContainer extends Component<Props, null> {
         const cars: CarsType = carList;
         const colors: ?Array<string> = colorList.colors;
 
+
         const manufacturers: ?Array<Object> = manufacturerList.manufacturers;
         return (
             <div className="container pBtm80">
                 <div className="mainRow">
                     <aside>
                         {colors && manufacturers &&
-                        <FormComponent handleSubmit={handleSubmit(this.submitFilter)} colors={colors}
-                                       manufacturers={manufacturers} location={location}/>}
+                        <LazyLoadingComponent load={() => import('../../components/form/filter_form')}>
+                            {(Component) => Component === null ?
+                                <div>...loading</div> :
+                                <Component handleSubmit={handleSubmit(this.submitFilter)} colors={colors}
+                                           manufacturers={manufacturers} location={location}/>}
+                        </LazyLoadingComponent>}
                     </aside>
                     <section>
-                        {cars.cars &&
-                        (<CarListComponent cars={cars.cars} totalPageCount={cars.totalPageCount}
+                        <LazyLoadingComponent load={() => import('../../components/list')}>
+                            {(Component) => Component === null || cars.isLoading ?
+                                <div><img src={loading} alt="loading"/></div> :
+                                <Component cars={cars.cars} totalPageCount={cars.totalPageCount}
                                            totalCount={cars.count} location={location}
-                                           submitSort={handleSubmit(this.submitSort)}/>)}
+                                           submitSort={handleSubmit(this.submitSort)}/>}
+                        </LazyLoadingComponent>
                     </section>
                 </div>
             </div>

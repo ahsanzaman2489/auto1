@@ -3,21 +3,22 @@ import {CarListContainer} from '../containers/car_list';
 import {shallow} from 'enzyme';
 
 
-const defaultProps = {
-    colorList: {colors: []},
-    carList: {cars: [], totalPageCount: 10, count: 100},
-    manufacturerList: {manufacturers: []},
-    handleSubmit: jest.fn(),
-    location: {search: jest.fn()},
-    history: {push: jest.fn()},
-    initialize: jest.fn(),
-    fetchColors: jest.fn(),
-    fetchManufacturers: jest.fn(),
-    fetchCars: jest.fn(),
 
-};
 
 const setup = (props= {},state=null) => {
+    const defaultProps = {
+        colorList: {colors: []},
+        carList: {cars: [], totalPageCount: 10, count: 100},
+        manufacturerList: {manufacturers: []},
+        handleSubmit: jest.fn(),
+        location: {search: jest.fn()},
+        history: {push: jest.fn()},
+        initialize: jest.fn(),
+        fetchColors: jest.fn(),
+        fetchManufacturers: jest.fn(),
+        fetchCars: jest.fn(),
+
+    };
     const setUpProps = {...defaultProps,...props};
     const wrapper = shallow(<CarListContainer {...setUpProps}/>);
     if(state) wrapper.setState(state);

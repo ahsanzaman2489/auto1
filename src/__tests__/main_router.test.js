@@ -4,9 +4,10 @@ import {shallow} from 'enzyme';
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-const defaultProps = {};
+
 
 const setup = (props= {},state=null) => {
+    const defaultProps = {};
     const setUpProps = {...defaultProps,...props};
     const wrapper = shallow(<MainRouterComponent {...setUpProps}/>);
     if(state) wrapper.setState(state);

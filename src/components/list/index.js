@@ -1,13 +1,11 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import ExtraDataComponent from '../extraData';
-import PagingComponent from '../paging';
-import ResultsComponent from '../results';
 import queryString from "query-string";
 import {NO_DATA} from "../../constanst/app";
 import type {SingleCarType} from "../../constanst/types";
 import {Field} from 'redux-form';
 import SelectBoxComponent from "../form/selectbox";
+import LazyLoadingComponent from "../lazy_loading";
 
 type Props = { cars: Array<SingleCarType>, totalPageCount: number, location: Object, totalCount: number, submitSort: Function }
 const CarListComponent = (props: Props) => {
@@ -16,6 +14,8 @@ const CarListComponent = (props: Props) => {
         {name: 'Mileage - Ascending', value: "asc"},
         {name: 'Mileage - Descending', value: "des"},
     ];
+
+
     const renderList = (cars) => {
         return cars.map((item, index) => {
             return (
@@ -23,7 +23,11 @@ const CarListComponent = (props: Props) => {
                     <div className="thumbnail"><img src={item.pictureUrl} alt=""/></div>
                     <div className="carSpec">
                         <h1>{item.manufacturerName} {item.modelName}</h1>
-                        <ExtraDataComponent item={item}/>
+                        <LazyLoadingComponent load={() => import('../../components/extraData')}>
+                            {(Component) => Component === null ?
+                                <div>...loading</div> :
+                                <Component item={item}/>}
+                        </LazyLoadingComponent>
                         <NavLink to={`/cars/detail/${item.stockNumber}`}>View details</NavLink>
                     </div>
                 </div>
@@ -37,11 +41,14 @@ const CarListComponent = (props: Props) => {
                 <div className="listingHead">
                     <div className="resultStats">
                         <h2>Available cars</h2>
-                        {/*{renderKeywords(currentParams)}*/}
-                        <ResultsComponent currentItemCount={cars.length}
-                                          totalItemCount={totalCount} currentPage={currentParams.page || 1}
-                                          itemPerPage={itemPerPage}
-                        />
+                        <LazyLoadingComponent load={() => import('../results')}>
+                            {(Component) => Component === null ?
+                                <div>...loading</div> :
+                                <Component currentItemCount={cars.length}
+                                           totalItemCount={totalCount} currentPage={currentParams.page || 1}
+                                           itemPerPage={itemPerPage}/>}
+                        </LazyLoadingComponent>
+
                     </div>
                     <div className="sorting">
                         <form name="sorting-form">
@@ -59,13 +66,19 @@ const CarListComponent = (props: Props) => {
                     </div>
                 </div>
                 {renderList(cars)}
-                {<PagingComponent totalPageCount={totalPageCount} location={location}/>}
+                <LazyLoadingComponent load={() => import('../paging')}>
+                    {(Component) => Component === null ?
+                        <div>...loading</div> :
+                        <Component totalPageCount={totalPageCount} location={location}/>}
+                </LazyLoadingComponent>
+
             </div>)
     };
 
     const currentParams: Object = queryString.parse(location.search);
     const itemPerPage: number = 10;
     const isCars: boolean = cars.length > 0;
+
     return (
         <div>
             {isCars ? renderCars() : <p className="noData">{NO_DATA}</p>}

@@ -2,9 +2,10 @@ import React from 'react';
 import App from '../App';
 import {shallow} from 'enzyme';
 
-const defaultProps = {};
+
 
 const setup = (props= {},state=null) => {
+    const defaultProps = {};
     const setUpProps = {...defaultProps,...props};
     const wrapper = shallow(<App {...setUpProps}/>);
     if(state) wrapper.setState(state);

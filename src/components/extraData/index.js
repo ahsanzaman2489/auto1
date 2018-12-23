@@ -6,12 +6,14 @@ const ExtraDataComponent = (props: Props) => {
     const {stockNumber, mileage, fuelType, color} = props.item;
 
     return (
-        <ul>
-            <li>Stock # {stockNumber}</li>
-            <li>{mileage.number} {mileage.unit}</li>
-            <li>{fuelType}</li>
-            <li>{color}</li>
-        </ul>
+        <div>
+            <ul>
+                <li>Stock # {stockNumber}</li>
+                <li>{mileage.number} {mileage.unit}</li>
+                <li>{fuelType}</li>
+                <li>{color}</li>
+            </ul>
+        </div>
     );
 };
 

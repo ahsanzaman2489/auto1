@@ -3,9 +3,10 @@ import HeaderComponent from '../components/header';
 import {shallow} from 'enzyme';
 
 
-const defaultProps = {src: "logo.png"};
+
 
 const setup = (props= {},state=null) => {
+    const defaultProps = {src: "logo.png"};
     const setUpProps = {...defaultProps,...props};
     const wrapper = shallow(<HeaderComponent {...setUpProps}/>);
     if(state) wrapper.setState(state);

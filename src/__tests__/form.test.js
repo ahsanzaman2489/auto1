@@ -3,13 +3,14 @@ import FormComponent from '../components/form/filter_form';
 import {shallow} from 'enzyme';
 
 
-const defaultProps = {
-    colors: [],
-    manufacturers: [],
-    handleSubmit: jest.fn(),
-};
+
 
 const setup = (props= {},state=null) => {
+    const defaultProps = {
+        colors: [],
+        manufacturers: [],
+        handleSubmit: jest.fn(),
+    };
     const setUpProps = {...defaultProps,...props};
     const wrapper = shallow(<FormComponent {...setUpProps}/>);
     if(state) wrapper.setState(state);

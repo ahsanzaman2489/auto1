@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchCar} from '../../actions/car_detail';
-import ExtraDataComponent from '../../components/extraData';
-import FavouriteComponent from '../../components/favourite';
+
+import LazyLoadingComponent from '../../components/lazy_loading';
 import type {SingleCarType} from '../../constanst/types';
 import {NO_DATA} from '../../constanst/app';
 
@@ -36,7 +36,7 @@ export class CarDetailContainer extends Component<Props, State> {
 
     isFavourite = (stockNumber: number) => {
         let isFavourite: boolean = false;
-        const favouriteArray: Array<any> = JSON.parse(localStorage.getItem('favourite_cars') || "[]");
+        const favouriteArray: Array<any> = JSON.parse(localStorage.getItem('favourite_cars')) || [];
 
         if (favouriteArray !== null) {
             favouriteArray.forEach(function (item) {
@@ -48,13 +48,13 @@ export class CarDetailContainer extends Component<Props, State> {
     };
 
     addToFavourite = (stockNumber: number) => {
-        const favouriteArray: Array<any> = JSON.parse(localStorage.getItem('favourite_cars') || "[]");
+        const favouriteArray: Array<any> = JSON.parse(localStorage.getItem('favourite_cars')) || [];
         favouriteArray.push(stockNumber);
         localStorage.setItem('favourite_cars', JSON.stringify(favouriteArray));
         this.setState({isFavourite: true});
     };
     removeFromFavourite = (stockNumber: number) => {
-        const favouriteArray: Array<any> = JSON.parse(localStorage.getItem('favourite_cars') || "[]");
+        const favouriteArray: Array<any> = JSON.parse(localStorage.getItem('favourite_cars')) || [];
         const stockNumberFound: Array<number> = favouriteArray.filter(function (item: number) {
             return item === stockNumber;
         });
@@ -62,13 +62,17 @@ export class CarDetailContainer extends Component<Props, State> {
         const index: number = favouriteArray.indexOf(stockNumberFound);
         favouriteArray.splice(index, 1);
 
-        localStorage.setItem('favourite_cars', JSON.stringify(favouriteArray));
+        if (favouriteArray.length === 0) {
+            localStorage.removeItem('favourite_cars');
+        } else {
+            localStorage.setItem('favourite_cars', JSON.stringify(favouriteArray));
+        }
         this.setState({isFavourite: false});
     };
 
 
     render() {
-        const {car,location,history} = this.props;
+        const {car} = this.props;
         const isDataAvailable: boolean = Object.keys(car).length > 0;
         const carDescription: string = `This car is currently available and can be delivered as soon as
             tomorrow morning. Please be aware that delivery times shown in
@@ -84,18 +88,28 @@ export class CarDetailContainer extends Component<Props, State> {
                         <div className="banner"></div>
                         <div className="container">
                             <div className="detailCont">
-
                                 <div className="carSpec">
                                     <h1>{car.manufacturerName} {car.modelName}</h1>
-                                    <div>{isDataAvailable && <ExtraDataComponent item={car}/>}</div>
+                                    <div>{isDataAvailable &&
+                                    <LazyLoadingComponent load={() => import('../../components/extraData')}>
+                                        {(Component) => Component === null ?
+                                            <div>...loading</div> :
+                                            <Component item={car}/>}
+                                    </LazyLoadingComponent>}
+                                    </div>
                                     <p>
                                         {carDescription}
                                     </p>
                                 </div>
                                 {isDataAvailable &&
-                                <FavouriteComponent stockNumber={car.stockNumber} addToFavourite={this.addToFavourite}
-                                                    removeFromFavourite={this.removeFromFavourite}
-                                                    isFavourite={this.state.isFavourite}/>}
+                                <LazyLoadingComponent load={() => import('../../components/favourite')}>
+                                    {(Component) => Component === null ?
+                                        <div>...loading</div> :
+                                        <Component stockNumber={car.stockNumber}
+                                                   addToFavourite={this.addToFavourite}
+                                                   removeFromFavourite={this.removeFromFavourite}
+                                                   isFavourite={this.state.isFavourite}/>}
+                                </LazyLoadingComponent>}
                             </div>
                         </div>
                     </div>)
