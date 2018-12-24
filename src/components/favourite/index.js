@@ -1,19 +1,20 @@
 import React from 'react';
+import {NO_FAVOURITE, FAVOURITE} from '../../constants/app';
 
 type Props = { stockNumber: number, addToFavourite: Function, isFavourite: boolean, removeFromFavourite: Function };
 const FavouriteComponent = (props: Props) => {
 
     const {stockNumber, addToFavourite, isFavourite, removeFromFavourite} = props;
     const renderButton = isFavourite => {
-        if (isFavourite) return (<button className="float-right btnfixedbtm" onClick={() => removeFromFavourite(stockNumber)}>remove</button>);
-        else return (<button className="float-right btnfixedbtm" onClick={() => addToFavourite(stockNumber)}>save</button>)
+        if (isFavourite) return (<button className="float-right btnfixedbtm"
+                                         onClick={() => removeFromFavourite(stockNumber)}>remove</button>);
+        else return (
+            <button className="float-right btnfixedbtm" onClick={() => addToFavourite(stockNumber)}>save</button>)
     };
     const renderText = isFavourite => {
         if (!isFavourite) {
-            return (`If you like this car, click the button and
-                save it in your collection of favourite
-                items.`)
-        } else return (`This Car is your favourite`);
+            return (NO_FAVOURITE)
+        } else return (FAVOURITE);
     };
     return (
         <div className="add-favourite">

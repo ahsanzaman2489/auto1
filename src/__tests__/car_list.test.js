@@ -2,9 +2,6 @@ import React from 'react';
 import {CarListContainer} from '../containers/car_list';
 import {shallow} from 'enzyme';
 
-
-
-
 const setup = (props= {},state=null) => {
     const defaultProps = {
         colorList: {colors: []},
@@ -27,12 +24,6 @@ const setup = (props= {},state=null) => {
 
 
 describe("CarListContainer", () => {
-    it('Should render both Components', () => {
-        const {wrapper} = setup();
-        expect(wrapper.find("CarListComponent").length).toBe(1);
-        expect(wrapper.find("FormComponent").length).toBe(1);
-    });
-
     it('should update URL when sorting called with sorting params', () => {
         const {wrapper, props} = setup();
         const {submitSort} = wrapper.instance();

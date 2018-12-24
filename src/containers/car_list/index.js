@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as Actions from '../../actions/car_list';
 import {reduxForm} from 'redux-form';
-import type {CarsType, ColorType, ManufacturersType} from '../../constanst/types';
+import type {CarsType, ColorType, ManufacturersType} from '../../constants/types';
 import queryString, {stringify} from "query-string";
 import LazyLoadingComponent from "../../components/lazy_loading";
 import loading from "../../loading.PNG";

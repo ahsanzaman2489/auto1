@@ -1,5 +1,5 @@
-import * as actionTypes from '../constanst/actionTypes';
-import type {CarsType, ColorType, ManufacturersType} from '../constanst/types';
+import * as actionTypes from '../constants/actionTypes';
+import type {CarsType, ColorType, ManufacturersType} from '../constants/types';
 import CarsService from '../service';
 
 const service = new CarsService();

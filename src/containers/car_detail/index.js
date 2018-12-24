@@ -4,8 +4,8 @@ import {bindActionCreators} from 'redux';
 import {fetchCar} from '../../actions/car_detail';
 
 import LazyLoadingComponent from '../../components/lazy_loading';
-import type {SingleCarType} from '../../constanst/types';
-import {NO_DATA} from '../../constanst/app';
+import type {SingleCarType} from '../../constants/types';
+import {NO_DATA} from '../../constants/app';
 
 
 type State = {

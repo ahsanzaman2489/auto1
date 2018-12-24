@@ -1,5 +1,5 @@
-import {CAR_DETAIL} from '../../constanst/actionTypes';
-import type {ActionTypes, CarsType} from '../../constanst/types';
+import {CAR_DETAIL} from '../../constants/actionTypes';
+import type {ActionTypes, CarsType} from '../../constants/types';
 
 type State = CarsType;
 

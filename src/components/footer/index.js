@@ -1,12 +1,10 @@
 import React from 'react';
+import {FOOTER_TEXT} from '../../constants/app.js';
 
 const FooterComponent = () => {
-    const rights = '© AUTO1 Group';
-    const currentYear = new Date().getFullYear();
-
     return (
         <footer>
-            {rights + " " + currentYear}
+           {FOOTER_TEXT}
         </footer>
     );
 };

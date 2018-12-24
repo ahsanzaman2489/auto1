@@ -1,4 +1,4 @@
-import {HOST, HOST_PORT} from '../constanst/app';
+import {HOST, HOST_PORT} from '../constants/app';
 import 'whatwg-fetch';
 
 

@@ -1,5 +1,5 @@
-import {CAR_DETAIL} from '../constanst/actionTypes';
-import type {SingleCarPayload} from '../constanst/types';
+import {CAR_DETAIL} from '../constants/actionTypes';
+import type {SingleCarPayload} from '../constants/types';
 import CarsService from '../service';
 
 const service = new CarsService();

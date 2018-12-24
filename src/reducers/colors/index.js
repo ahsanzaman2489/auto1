@@ -1,5 +1,5 @@
-import {COLORS_LIST} from '../../constanst/actionTypes';
-import type {ActionTypes, ColorType} from "../../constanst/types";
+import {COLORS_LIST} from '../../constants/actionTypes';
+import type {ActionTypes, ColorType} from "../../constants/types";
 
 type State = ColorType;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {CarDetailContainer} from '../containers/car_detail';
 import {shallow} from 'enzyme';
-import {NO_DATA} from '../constanst/app';
+import {NO_DATA} from '../constants/app';
 import 'jest-localstorage-mock';
 
 
@@ -49,12 +49,6 @@ describe("CarDetailContainer", () => {
             props = setupWrapper.props;
             KEY = 'favourite_cars';
             VALUE = props.car.stockNumber;
-        });
-
-        it('Should render both Components', () => {
-
-            expect(wrapper.find("ExtraDataComponent").length).toBe(1);
-            expect(wrapper.find("FavouriteComponent").length).toBe(1);
         });
 
         it('add favourite method should add stock number in local storage', () => {

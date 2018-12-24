@@ -1,8 +1,8 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import queryString from "query-string";
-import {NO_DATA} from "../../constanst/app";
-import type {SingleCarType} from "../../constanst/types";
+import {NO_DATA} from "../../constants/app";
+import type {SingleCarType} from "../../constants/types";
 import {Field} from 'redux-form';
 import SelectBoxComponent from "../form/selectbox";
 import LazyLoadingComponent from "../lazy_loading";

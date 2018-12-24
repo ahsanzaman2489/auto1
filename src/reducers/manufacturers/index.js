@@ -1,5 +1,5 @@
-import {MANUFACTURERS_LIST} from '../../constanst/actionTypes';
-import type {ActionTypes, ManufacturersType} from "../../constanst/types";
+import {MANUFACTURERS_LIST} from '../../constants/actionTypes';
+import type {ActionTypes, ManufacturersType} from "../../constants/types";
 
 type State = ManufacturersType;
 
