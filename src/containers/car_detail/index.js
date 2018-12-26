@@ -29,14 +29,14 @@ export class CarDetailContainer extends Component<Props, State> {
         fetchCar(match.params.stockNumber);
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps: Props) {
         const {car} = nextProps;
         this.isFavourite(car.stockNumber)
     }
 
     isFavourite = (stockNumber: number) => {
         let isFavourite: boolean = false;
-        const favouriteArray: Array<any> = JSON.parse(localStorage.getItem('favourite_cars')) || [];
+        const favouriteArray: Array<any> = JSON.parse(localStorage.getItem('favourite_cars') || "[]");
 
         if (favouriteArray !== null) {
             favouriteArray.forEach(function (item) {
@@ -48,13 +48,13 @@ export class CarDetailContainer extends Component<Props, State> {
     };
 
     addToFavourite = (stockNumber: number) => {
-        const favouriteArray: Array<any> = JSON.parse(localStorage.getItem('favourite_cars')) || [];
+        const favouriteArray: Array<any> = JSON.parse(localStorage.getItem('favourite_cars') || "[]");
         favouriteArray.push(stockNumber);
         localStorage.setItem('favourite_cars', JSON.stringify(favouriteArray));
         this.setState({isFavourite: true});
     };
     removeFromFavourite = (stockNumber: number) => {
-        const favouriteArray: Array<any> = JSON.parse(localStorage.getItem('favourite_cars')) || [];
+        const favouriteArray: Array<any> = JSON.parse(localStorage.getItem('favourite_cars') || "[]");
         const stockNumberFound: Array<number> = favouriteArray.filter(function (item: number) {
             return item === stockNumber;
         });

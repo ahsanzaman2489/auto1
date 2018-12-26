@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 
-export default class LazyLoadingComponent extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            component: null
-        };
-    }
+type Props = {
+    load: Function,
+    children: Function
+}
+export default class LazyLoadingComponent extends Component<Props, { component: null | Function }> {
+    state = {
+        component: null
+    };
 
     componentWillMount() {
         const {load} = this.props;

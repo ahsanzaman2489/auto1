@@ -2,12 +2,13 @@
 .*/node_modules/.*
 .*/config/.*
 .*/mock-server/.*
+.*/coverage/.*
 .*/public/.*
 .*/scripts/.*
 .*/idea/.*
 .*/src/registerServiceWorker\.js
 .*/src/configureStore\.js
-.*/src/App.test\.js
+.*/src/__tests__/.*
 .*/src/index\.js
 [include]
 ./src/

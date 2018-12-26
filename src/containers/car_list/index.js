@@ -33,7 +33,7 @@ export class CarListContainer extends Component<Props, null> {
         fetchCars(location.search);
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps: Props) {
         const {fetchCars, location, initialize} = nextProps;
         const currentParams = queryString.parse(location.search);
 
