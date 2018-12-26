@@ -7,7 +7,7 @@ const ResultsComponent = (props: Props) => {
 
     return (
         <div className="searchResult">
-           <p> Showing {(itemPerPage * (currentPage - 1)) + currentItemCount} of {totalItemCount} results</p>
+            <p>Showing {(itemPerPage * (currentPage - 1)) + currentItemCount} of {totalItemCount} results</p>
         </div>
     );
 };

@@ -3,7 +3,7 @@ import type {ActionTypes, CarsType} from "../../constants/types";
 
 type State = CarsType;
 
-const carsState = (state: ?State, action: ActionTypes): State => {
+const carsState = (state: ?State = {}, action: ActionTypes): State => {
     switch (action.type) {
         case LOADING_CARS:
             state = {...action.payload,isLoading:true};
@@ -12,7 +12,7 @@ const carsState = (state: ?State, action: ActionTypes): State => {
             state = {...action.payload,isLoading:false};
             return state;
         default:
-            return {...state};
+            return state;
     }
 };
 

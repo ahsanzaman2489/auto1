@@ -2,13 +2,13 @@ import React from 'react';
 import {CarListContainer} from '../containers/car_list';
 import {shallow} from 'enzyme';
 
-const setup = (props= {},state=null) => {
+const setup = (props = {}, state = null) => {
     const defaultProps = {
         colorList: {colors: []},
         carList: {cars: [], totalPageCount: 10, count: 100},
         manufacturerList: {manufacturers: []},
         handleSubmit: jest.fn(),
-        location: {search: jest.fn()},
+        location: {search: ""},
         history: {push: jest.fn()},
         initialize: jest.fn(),
         fetchColors: jest.fn(),
@@ -16,10 +16,10 @@ const setup = (props= {},state=null) => {
         fetchCars: jest.fn(),
 
     };
-    const setUpProps = {...defaultProps,...props};
+    const setUpProps = {...defaultProps, ...props};
     const wrapper = shallow(<CarListContainer {...setUpProps}/>);
-    if(state) wrapper.setState(state);
-    return {wrapper, props:setUpProps}
+    if (state) wrapper.setState(state);
+    return {wrapper, props: setUpProps}
 };
 
 
@@ -35,6 +35,19 @@ describe("CarListContainer", () => {
             search: "sort=asc"
         });
 
+    });
+
+    it('when component receive new props ', () => {
+        const {wrapper,props} = setup();
+        jest.clearAllMocks();
+
+        wrapper.setProps({
+            location: {search: "/car/list?color=red"},
+        });
+
+        expect(props.fetchCars).toBeCalled();
+        expect(props.fetchCars).toHaveBeenCalledTimes(1);
+        expect(props.fetchCars).toHaveBeenCalledWith("/car/list?color=red");
     });
 
     it('should update URL when Filter method called with filter params', () => {

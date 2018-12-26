@@ -11,10 +11,10 @@ export default class LazyLoadingComponent extends Component {
     componentWillMount() {
         const {load} = this.props;
 
-       load().then(res => {
+        load().then(res => {
             return res.default;
         }).then(mod => {
-            this.setState({component:mod});
+            this.setState({component: mod});
         });
     }
 

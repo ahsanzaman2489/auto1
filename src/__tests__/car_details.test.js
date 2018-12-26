@@ -39,6 +39,7 @@ describe("CarDetailContainer", () => {
         });
     });
 
+
     describe("when there is data", () => {
         let wrapper, props, KEY, VALUE;
         const state = {isFavourite: false};
@@ -95,7 +96,7 @@ describe("CarDetailContainer", () => {
             const {isFavourite} = wrapper.instance();
             localStorage.clear();
             localStorage.setItem.mockClear();
-            
+
             const array = [];
             array.push(VALUE);
 

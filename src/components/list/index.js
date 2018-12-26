@@ -9,7 +9,7 @@ import LazyLoadingComponent from "../lazy_loading";
 
 type Props = { cars: Array<SingleCarType>, totalPageCount: number, location: Object, totalCount: number, submitSort: Function }
 const CarListComponent = (props: Props) => {
-    const {cars, totalPageCount, location, totalCount, submitSort} = props;
+    const {cars = [], totalPageCount, location, totalCount, submitSort} = props;
     const sortingOptions = [
         {name: 'Mileage - Ascending', value: "asc"},
         {name: 'Mileage - Descending', value: "des"},

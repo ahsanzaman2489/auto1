@@ -17,7 +17,7 @@ const PagingComponent = (props: Props) => {
     const currentPage = parseInt(currentParams.page, 10) || 1;
     return (
         <div className="pagination">
-            <ul >
+            <ul>
                 <li><NavLink to={renderPaginationLink('/cars/list', currentParams, 1)}
                              className={currentPage === 1 ? 'disabled' : ''}>first</NavLink></li>
                 <li><NavLink

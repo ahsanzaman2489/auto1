@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default (field: Object) => {
+const SelectBoxComponent = (field: Object) => {
 
     const {active, error, submitFailed} = field.meta;
     const {id, label, input, placeholder, options} = field;
@@ -13,7 +13,6 @@ export default (field: Object) => {
         });
     };
     return (
-
         <div className="row">
             <div className="form-group col-md-6 col-md-offset-3">
                 <label htmlFor={id}>{label}</label>
@@ -28,3 +27,5 @@ export default (field: Object) => {
         </div>
     );
 };
+
+export default SelectBoxComponent;
