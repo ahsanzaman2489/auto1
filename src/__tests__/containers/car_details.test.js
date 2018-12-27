@@ -3,9 +3,10 @@ import {CarDetailContainer} from '../../containers/car_detail';
 import {shallow} from 'enzyme';
 import {NO_DATA} from '../../constants/app';
 import 'jest-localstorage-mock';
+import renderer from "react-test-renderer";
 
 
-const setup = (setUpProps = {}, state = null) => {
+const setup = (props = {}, state = null) => {
     const defaultProps = {
         match: {params: {stockNumber: "25710"}},
         fetchCar: jest.fn(),
@@ -19,13 +20,18 @@ const setup = (setUpProps = {}, state = null) => {
             "pictureUrl": "http://localhost:3001/car.svg"
         }
     };
-    const props = {...defaultProps, ...setUpProps};
-    const wrapper = shallow(<CarDetailContainer {...props}/>);
+    const setUpProps = {...defaultProps, ...props};
+    const wrapper = shallow(<CarDetailContainer {...setUpProps}/>);
+    const tree = () => setTimeout(() => renderer.create(<CarDetailContainer {...setUpProps}/>).toJSON());
     if (state) wrapper.setState(state);
-    return {wrapper, props}
+    return {wrapper, props: setUpProps, tree}
 };
 
 describe("CarDetailContainer", () => {
+    it('should match with snapshot', () => {
+        const {tree} = setup();
+        expect(tree()).toMatchSnapshot();
+    });
 
     describe("When there is not data", () => {
         let wrapper;

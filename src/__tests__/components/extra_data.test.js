@@ -1,6 +1,7 @@
 import React from 'react';
 import ExtraDataComponent from '../../components/extraData';
 import {shallow} from 'enzyme';
+import renderer from 'react-test-renderer';
 
 
 const setup = (props = {}, state = null) => {
@@ -14,12 +15,17 @@ const setup = (props = {}, state = null) => {
     };
     const setUpProps = {...defaultProps, ...props};
     const wrapper = shallow(<ExtraDataComponent {...setUpProps}/>);
+    const tree = () => renderer.create(<ExtraDataComponent {...setUpProps}/>).toJSON();
     if (state) wrapper.setState(state);
-    return {wrapper, props: setUpProps}
+    return {wrapper, props: setUpProps, tree};
 };
 
 
 describe("Extra data component", () => {
+    it('should match with snapshot', () => {
+        const {tree} = setup();
+        expect(tree()).toMatchSnapshot();
+    });
     it('should render no data text if no data', () => {
         const {wrapper, props} = setup();
         expect(wrapper.find('li').length).toBe(4);

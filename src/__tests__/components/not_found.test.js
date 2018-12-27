@@ -1,18 +1,25 @@
 import React from 'react';
 import NotFoundComponent from '../../components/404';
 import {shallow} from 'enzyme';
+import renderer from "react-test-renderer";
+import {BrowserRouter as Router} from 'react-router-dom';
 
 
-
-const setup = (props= {},state=null) => {
+const setup = (props = {}, state = null) => {
     const defaultProps = {};
-    const setUpProps = {...defaultProps,...props};
+    const setUpProps = {...defaultProps, ...props};
     const wrapper = shallow(<NotFoundComponent {...setUpProps}/>);
-    if(state) wrapper.setState(state);
-    return {wrapper, props:setUpProps}
+    const tree = () => renderer.create(<Router><NotFoundComponent {...setUpProps}/></Router>).toJSON();
+    if (state) wrapper.setState(state);
+    return {wrapper, props: setUpProps, tree}
 };
 
 describe("Not found component", () => {
+    it('should match with snapshot', () => {
+        const {tree} = setup();
+        expect(tree()).toMatchSnapshot();
+    });
+
     it('Should render not found component', () => {
         const {wrapper} = setup();
         expect(wrapper.find('.pagenotfound').length).toBe(1);

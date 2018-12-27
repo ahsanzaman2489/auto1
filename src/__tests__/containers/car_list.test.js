@@ -1,6 +1,8 @@
 import React from 'react';
 import {CarListContainer} from '../../containers/car_list';
 import {shallow} from 'enzyme';
+import renderer from "react-test-renderer";
+import {CarDetailContainer} from "../../containers/car_detail";
 
 const setup = (props = {}, state = null) => {
     const defaultProps = {
@@ -18,12 +20,18 @@ const setup = (props = {}, state = null) => {
     };
     const setUpProps = {...defaultProps, ...props};
     const wrapper = shallow(<CarListContainer {...setUpProps}/>);
+    const tree = () => setTimeout(() => renderer.create(<CarListContainer {...setUpProps}/>).toJSON());
     if (state) wrapper.setState(state);
-    return {wrapper, props: setUpProps}
+    return {wrapper, props: setUpProps, tree}
 };
 
 
 describe("CarListContainer", () => {
+    it('should match with snapshot', () => {
+        const {tree} = setup();
+        expect(tree()).toMatchSnapshot();
+    });
+
     it('should update URL when sorting called with sorting params', () => {
         const {wrapper, props} = setup();
         const {submitSort} = wrapper.instance();
@@ -38,7 +46,7 @@ describe("CarListContainer", () => {
     });
 
     it('when component receive new props ', () => {
-        const {wrapper,props} = setup();
+        const {wrapper, props} = setup();
         jest.clearAllMocks();
 
         wrapper.setProps({

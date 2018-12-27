@@ -1,6 +1,7 @@
 import React from 'react';
 import CarListComponent from '../../components/list';
 import {shallow} from 'enzyme';
+import renderer from "react-test-renderer";
 
 
 const setup = (props = {}, state = null) => {
@@ -17,15 +18,21 @@ const setup = (props = {}, state = null) => {
     };
     const setUpProps = {...defaultProps, ...props};
     const wrapper = shallow(<CarListComponent {...setUpProps}/>);
+    const tree = () => setTimeout(() => renderer.create(<CarListComponent {...setUpProps}/>).toJSON());
     if (state) wrapper.setState(state);
-    return {wrapper, props: setUpProps}
+    return {wrapper, props: setUpProps, tree}
 };
 
 
 describe("List component", () => {
+    it('should match with snapshot', () => {
+        const {tree} = setup();
+        expect(tree()).toMatchSnapshot();
+    });
+
     describe('if no cars', () => {
         it('should render no data text if no data', () => {
-            const {wrapper} = setup({cars:[]});
+            const {wrapper} = setup({cars: []});
             expect(wrapper.find('.noData').length).toBe(1);
         });
     });
