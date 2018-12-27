@@ -57,5 +57,7 @@ npm-debug.log
 .vscode
 
 # coverage
-
 /coverage
+
+# coverage
+flow-typed
