@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectBoxComponent from '../components/form/selectbox';
+import SelectBoxComponent from '../../components/form/selectbox';
 import {shallow} from 'enzyme';
 
 const setup = (props = {}, state = null) => {

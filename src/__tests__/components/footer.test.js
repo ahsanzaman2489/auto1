@@ -1,6 +1,6 @@
 import React from 'react';
-import FooterComponent from '../components/footer';
-import {FOOTER_TEXT} from '../constants/app';
+import FooterComponent from '../../components/footer';
+import {FOOTER_TEXT} from '../../constants/app';
 
 import {shallow} from 'enzyme';
 

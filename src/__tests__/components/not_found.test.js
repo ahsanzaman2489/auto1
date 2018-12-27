@@ -1,5 +1,5 @@
 import React from 'react';
-import NotFoundComponent from '../components/404';
+import NotFoundComponent from '../../components/404';
 import {shallow} from 'enzyme';
 
 

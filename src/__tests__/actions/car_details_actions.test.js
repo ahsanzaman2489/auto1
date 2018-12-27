@@ -1,10 +1,10 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import * as actions from '../actions/car_detail'
-import * as types from '../constants/ActionTypes'
+import * as actions from '../../actions/car_detail'
+import * as types from '../../constants/actionTypes'
 import expect from 'expect'
 
-jest.mock('../service/index.js', () => {
+jest.mock('../../service/index.js', () => {
         return class CarsService {
             fetchList = () => {
                 return new Promise(resolve => {

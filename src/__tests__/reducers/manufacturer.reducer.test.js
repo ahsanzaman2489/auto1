@@ -1,5 +1,5 @@
-import manufacturersState from "../reducers/manufacturers";
-import {MANUFACTURERS_LIST} from "../constants/actionTypes";
+import manufacturersState from "../../reducers/manufacturers";
+import {MANUFACTURERS_LIST} from "../../constants/actionTypes";
 
 describe("Cars Reducer", () => {
     it('should return current state if no action is passed as default', () => {

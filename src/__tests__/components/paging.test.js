@@ -1,5 +1,5 @@
 import React from 'react';
-import PagingComponent from '../components/paging';
+import PagingComponent from '../../components/paging';
 import {shallow} from 'enzyme';
 
 

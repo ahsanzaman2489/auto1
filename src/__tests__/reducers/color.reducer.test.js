@@ -1,5 +1,5 @@
-import colorState from "../reducers/colors";
-import {COLORS_LIST} from "../constants/actionTypes";
+import colorState from "../../reducers/colors";
+import {COLORS_LIST} from "../../constants/actionTypes";
 
 describe("Cars Reducer", () => {
     it('should return current state if no action is passed as default', () => {

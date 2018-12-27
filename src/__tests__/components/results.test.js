@@ -1,5 +1,5 @@
 import React from 'react';
-import ResultsComponent from '../components/results';
+import ResultsComponent from '../../components/results';
 import {shallow} from 'enzyme';
 
 

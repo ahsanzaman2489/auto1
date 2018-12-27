@@ -1,8 +1,8 @@
 import React from 'react';
-import MainRouterComponent from '../components/main_router';
+import MainRouterComponent from '../../components/main_router';
 import {shallow} from 'enzyme';
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
 
 
 

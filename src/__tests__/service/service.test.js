@@ -1,6 +1,6 @@
-import CarsService from '../service/';
+import CarsService from '../../service';
 
-jest.mock('../service/', () => {
+jest.mock('../../service/', () => {
     return class CarsService {
         fetchList = () => {
             return new Promise(resolve => {
@@ -35,7 +35,6 @@ describe("Fetch results from mock api", () => {
         const fetchMock = service.fetchList();
         fetchMock.then((response) => {
             const json = JSON.parse(response);
-            console.log(json)
             expect(json.cars.length).toBe(2);
             done();
         });

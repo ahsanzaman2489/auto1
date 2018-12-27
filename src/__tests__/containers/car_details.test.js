@@ -1,7 +1,7 @@
 import React from 'react';
-import {CarDetailContainer} from '../containers/car_detail';
+import {CarDetailContainer} from '../../containers/car_detail';
 import {shallow} from 'enzyme';
-import {NO_DATA} from '../constants/app';
+import {NO_DATA} from '../../constants/app';
 import 'jest-localstorage-mock';
 
 

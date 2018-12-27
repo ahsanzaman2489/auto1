@@ -1,5 +1,5 @@
-import carState from "../reducers/car";
-import {CAR_DETAIL} from "../constants/actionTypes";
+import carState from "../../reducers/car";
+import {CAR_DETAIL} from "../../constants/actionTypes";
 
 describe("Cars Reducer", () => {
     it('should return current state if no action is passed as default', () => {

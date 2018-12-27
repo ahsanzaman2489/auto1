@@ -1,5 +1,5 @@
 import React from 'react';
-import CarListComponent from '../components/list';
+import CarListComponent from '../../components/list';
 import {shallow} from 'enzyme';
 
 

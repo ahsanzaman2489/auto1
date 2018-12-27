@@ -1,6 +1,6 @@
 import React from 'react';
-import FavouriteComponent from '../components/favourite';
-import {NO_FAVOURITE,FAVOURITE} from '../constants/app.js';
+import FavouriteComponent from '../../components/favourite';
+import {NO_FAVOURITE,FAVOURITE} from '../../constants/app.js';
 import {shallow} from 'enzyme';
 
 const setup = (props = {}, state = null) => {

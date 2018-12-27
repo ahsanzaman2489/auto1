@@ -1,5 +1,5 @@
 import React from 'react';
-import {CarListContainer} from '../containers/car_list';
+import {CarListContainer} from '../../containers/car_list';
 import {shallow} from 'enzyme';
 
 const setup = (props = {}, state = null) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import ExtraDataComponent from '../components/extraData';
+import ExtraDataComponent from '../../components/extraData';
 import {shallow} from 'enzyme';
 
 
