@@ -1,6 +1,16 @@
 import React from 'react';
 import {NO_FAVOURITE, FAVOURITE} from '../../constants/app';
 
+/**
+ * Favourite component renders whole div with text and buttons.
+ * @constructor
+ *
+ * @param {number} stockNumber - stockNumber of Car.
+ * @param {Function} addToFavourite - add car to localstorage as a favourite.
+ * @param {boolean} isFavourite - function check if car is already favourite on component load.
+ * @param {Function} removeFromFavourite - remove car from localstorage.
+ */
+
 type Props = { stockNumber: number, addToFavourite: Function, isFavourite: boolean, removeFromFavourite: Function };
 const FavouriteComponent = (props: Props) => {
 

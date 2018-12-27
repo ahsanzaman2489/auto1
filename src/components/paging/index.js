@@ -2,6 +2,14 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import queryString, {stringify} from "query-string";
 
+/**
+ * Paging component renders pagination of list.
+ * @constructor
+ *
+ * @param {Number} totalPageCount - total number of pages we have in list.
+ * @param {Object} location - browser location object.
+ */
+
 type Props = { totalPageCount: number, location: Object }
 const PagingComponent = (props: Props) => {
 

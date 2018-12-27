@@ -1,7 +1,12 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-
+/**
+ * Header component renders Logo and navigation.
+ * @constructor
+ *
+ * @param {String} src - source of logo.
+ */
 
 const HeaderComponent = (props: { src: string }) => {
     const {src} = props;

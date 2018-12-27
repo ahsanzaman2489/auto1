@@ -3,6 +3,16 @@ import type {ActionTypes, CarsType} from '../../constants/types';
 
 type State = CarsType;
 
+/**
+ * Single detail Car Reducer
+ * @constructor
+ *
+ * @param {Object} state - holds car detail
+ * @param {Object} action - holds payload and type of action
+ * @return {Object} state - returns new state after manipulation
+ */
+
+
 const carState = (state: State = {}, action: ActionTypes): State => {
 
     switch (action.type) {

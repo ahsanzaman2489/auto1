@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-
+/**
+ * Lazy loading component which render other component on demand with lazy load.
+ * @constructor
+ *
+ * @param {Function} Children - callback to render child .
+ * @param {Function} Load - function return component to load.
+ */
 type Props = {
     load: Function,
     children: Function

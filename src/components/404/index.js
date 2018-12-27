@@ -2,6 +2,11 @@ import React from 'react';
 import logo from '../../logo.png';
 import {NavLink} from 'react-router-dom';
 
+/**
+ * Not found component render when no routes matches.
+ * @constructor
+ */
+
 const NotFoundComponent = () => {
     return (
         <div className="container">

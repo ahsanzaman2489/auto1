@@ -19,6 +19,11 @@ type Props = {
 
 }
 
+/**
+ * Car Detail Container holds state and renders all components related to detail page view.
+ * @constructor
+ */
+
 export class CarDetailContainer extends Component<Props, State> {
     state = {
         isFavourite: false

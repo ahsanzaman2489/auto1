@@ -7,6 +7,17 @@ import {Field} from 'redux-form';
 import SelectBoxComponent from "../form/selectbox";
 import LazyLoadingComponent from "../lazy_loading";
 
+/**
+ * Car List Container render each list in component.
+ * @constructor
+ *
+ * @param {Array} cars - Array of Cars.
+ * @param {number} totalPageCount - The x value.
+ * @param {Object} location - location object.
+ * @param {number} totalCount - Total numbers of cars.
+ * @param {Function} submitSort - function to applying filter.
+ */
+
 type Props = { cars: Array<SingleCarType>, totalPageCount: number, location: Object, totalCount: number, submitSort: Function }
 const CarListComponent = (props: Props) => {
     const {cars = [], totalPageCount, location, totalCount, submitSort} = props;

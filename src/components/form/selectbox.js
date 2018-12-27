@@ -1,5 +1,12 @@
 import React from 'react';
 
+/**
+ * Select ox component renders one select box.
+ * @constructor
+ *
+ * @param {Object} field - consist all info of select box .
+ */
+
 const SelectBoxComponent = (field: Object) => {
 
     const {active, error, submitFailed} = field.meta;

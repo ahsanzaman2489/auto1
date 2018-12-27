@@ -21,6 +21,10 @@ type Props = {
     manufacturerList: ManufacturersType | Object
 }
 
+/**
+ * Car List Container holds state and renders all components related to list view.
+ * @constructor
+ */
 
 export class CarListContainer extends Component<Props, null> {
 

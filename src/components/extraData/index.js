@@ -1,5 +1,12 @@
 import React from 'react';
 
+/**
+ * Every car additional details like mileage , fuelType etc.
+ * @constructor
+ *
+ * @param {Object} item - Object of Cars additional details.
+ */
+
 type Props = { item: { stockNumber: number, mileage: Object, fuelType: string, color: string } };
 const ExtraDataComponent = (props: Props) => {
 

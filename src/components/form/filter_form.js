@@ -2,6 +2,17 @@ import React from 'react';
 import SelectBoxComponent from "./selectbox";
 import {Field} from 'redux-form';
 
+/**
+ * form component renders inputs for filter form.
+ * @constructor
+ *
+ * @param {Array} colors - color to filter Car.
+ * @param {Function} manufacturers - manufacturers of cars for filter.
+ * @param {boolean} handleSubmit - function to submit filter search.
+ * @param {Object} location - location object of browser.
+ */
+
+
 type Props = { colors: Array<string>, manufacturers: Array<Object>, handleSubmit: Function, location: Object }
 const FormComponent = (props: Props) => {
     const {colors, manufacturers, handleSubmit} = props;
