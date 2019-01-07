@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Favourite component should match with snapshot 1`] = `
+<footer>
+  2019 © AUTO1 Group
+</footer>
+`;

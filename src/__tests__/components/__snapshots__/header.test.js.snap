@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component should match with snapshot 1`] = `
+<div
+  className="container"
+>
+  <header>
+    <div
+      className="logo"
+    >
+      <a
+        aria-current="page"
+        className="active"
+        href="/"
+        onClick={[Function]}
+        style={Object {}}
+      >
+        <img
+          alt="logo"
+          className="logo"
+          src="logo.png"
+        />
+      </a>
+    </div>
+    <div
+      className="main-menu"
+    >
+      <ul>
+        <li>
+          purchase
+        </li>
+        <li>
+          my orders
+        </li>
+        <li>
+          sell
+        </li>
+      </ul>
+    </div>
+  </header>
+</div>
+`;

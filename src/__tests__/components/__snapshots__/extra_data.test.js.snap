@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Extra data component should match with snapshot 1`] = `
+<div>
+  <ul>
+    <li>
+      Stock # 
+      10172
+    </li>
+    <li>
+      182124
+       
+      km
+    </li>
+    <li>
+      Petrol
+    </li>
+    <li>
+      red
+    </li>
+  </ul>
+</div>
+`;

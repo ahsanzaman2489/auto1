@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Not found component should match with snapshot 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="pagenotfound"
+  >
+    <div
+      className="logo"
+    >
+      <img
+        alt="logo"
+        src="logo.png"
+      />
+    </div>
+    <div
+      className="content404"
+    >
+      <h1>
+        404 - Not Found
+      </h1>
+      <p>
+        Sorry, the page you are looking for does not exist. You can always go back to the 
+        <a
+          aria-current={null}
+          className={undefined}
+          href="/cars/list/"
+          onClick={[Function]}
+          style={undefined}
+        >
+          homepage
+        </a>
+        .
+      </p>
+    </div>
+  </div>
+</div>
+`;

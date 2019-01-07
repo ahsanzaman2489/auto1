@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Results component should match with snapshot 1`] = `
+<div
+  className="searchResult"
+>
+  <p>
+    Showing 
+    20
+     of 
+    20
+     results
+  </p>
+</div>
+`;
