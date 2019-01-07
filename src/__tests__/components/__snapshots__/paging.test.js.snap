@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Paging component should match with snapshot 1`] = `
+<div
+  className="pagination"
+>
+  <ul>
+    <li>
+      <a
+        aria-current={null}
+        className="disabled"
+        href="/cars/list?color=black&manufacturer=Chrysler&page=1&sort=asc"
+        onClick={[Function]}
+        style={undefined}
+      >
+        first
+      </a>
+    </li>
+    <li>
+      <a
+        aria-current={null}
+        className="disabled"
+        href="/cars/list?color=black&manufacturer=Chrysler&page=1&sort=asc"
+        onClick={[Function]}
+        style={undefined}
+      >
+        previous
+      </a>
+    </li>
+    <li>
+      <span>
+        page 
+        1
+         of 
+        20
+      </span>
+    </li>
+    <li>
+      <a
+        aria-current={null}
+        className=""
+        href="/cars/list?color=black&manufacturer=Chrysler&page=2&sort=asc"
+        onClick={[Function]}
+        style={undefined}
+      >
+        next
+      </a>
+    </li>
+    <li>
+      <a
+        aria-current={null}
+        className=""
+        href="/cars/list?color=black&manufacturer=Chrysler&page=20&sort=asc"
+        onClick={[Function]}
+        style={undefined}
+      >
+        last
+      </a>
+    </li>
+  </ul>
+</div>
+`;
